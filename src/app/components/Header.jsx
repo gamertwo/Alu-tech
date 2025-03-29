@@ -1,13 +1,30 @@
 // app/components/Header.jsx
 "use client";
 
+import { useState } from "react";
 import { motion } from "framer-motion";
 import Link from "next/link";
+import Image from "next/image";
+import { Menu, X } from "lucide-react";
 
 const Header = () => {
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+
+  const toggleMobileMenu = () => {
+    setMobileMenuOpen(!mobileMenuOpen);
+  };
+
+  const navItems = [
+    { name: "Products", path: "/" },
+    { name: "Projects", path: "/projects" },
+    { name: "Catalog", path: "/catalog" },
+    { name: "About Us", path: "/about" },
+    { name: "Contact Us", path: "/contact" }
+  ];
+
   return (
     <header className="sticky top-0 z-50 bg-white shadow-md">
-      <div className="container mx-auto px-4 py-4">
+      <div className="container mx-auto px-4 py-3">
         <div className="flex justify-between items-center">
           <motion.div 
             className="flex items-center"
@@ -15,33 +32,75 @@ const Header = () => {
             animate={{ opacity: 1 }}
             transition={{ duration: 0.5 }}
           >
-            <div className="text-2xl font-bold text-gray-800">
-              <span className="text-blue-400">White Gold</span> Aluminium
-            </div>
+            <Link href="/" className="flex items-center">
+              <div className="relative h-12 w-40">
+                {/* Replace with your actual logo path */}
+                <Image 
+                  src="/logo.png" 
+                  alt="White Gold Aluminium Logo" 
+                  fill
+                  style={{ objectFit: "contain" }}
+                  priority
+                />
+              </div>
+            </Link>
           </motion.div>
+          
+          {/* Desktop Navigation */}
           <nav className="hidden md:flex space-x-8">
-            {["About", "Products", "Manufacturing", "Industries", "Sustainability", "Contact"].map((item, index) => (
+            {navItems.map((item, index) => (
               <motion.div
-                key={item}
+                key={item.name}
                 initial={{ opacity: 0, y: -20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.5, delay: index * 0.1 }}
               >
-                <Link href={`#${item.toLowerCase()}`} className="text-gray-600 hover:text-amber-600 transition-colors">
-                  {item}
+                <Link 
+                  href={item.path}
+                  className="text-gray-600 hover:text-sky-600 font-medium transition-colors"
+                >
+                  {item.name}
                 </Link>
               </motion.div>
             ))}
           </nav>
+          
+          {/* Mobile Menu Button */}
           <div className="md:hidden">
-            {/* Mobile menu button */}
-            <button className="text-gray-600">
-              <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
-              </svg>
+            <button 
+              className="text-gray-600 focus:outline-none"
+              onClick={toggleMobileMenu}
+            >
+              {mobileMenuOpen ? 
+                <X className="h-6 w-6" /> : 
+                <Menu className="h-6 w-6" />
+              }
             </button>
           </div>
         </div>
+        
+        {/* Mobile Navigation */}
+        {mobileMenuOpen && (
+          <motion.div 
+            className="md:hidden mt-4 py-4 border-t border-gray-100"
+            initial={{ opacity: 0, height: 0 }}
+            animate={{ opacity: 1, height: "auto" }}
+            transition={{ duration: 0.3 }}
+          >
+            <div className="flex flex-col space-y-4">
+              {navItems.map((item) => (
+                <Link 
+                  key={item.name}
+                  href={item.path}
+                  className="text-gray-600 hover:text-sky-600 font-medium px-4 py-2 hover:bg-gray-50 rounded-md transition-colors"
+                  onClick={toggleMobileMenu}
+                >
+                  {item.name}
+                </Link>
+              ))}
+            </div>
+          </motion.div>
+        )}
       </div>
     </header>
   );

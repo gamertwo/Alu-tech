@@ -18,7 +18,7 @@ const HeroSection = () => {
     if (text.length < fullText.length) {
       const typing = setTimeout(() => {
         setText(fullText.slice(0, text.length + 1));
-      }, 100);
+      }, 40);
       
       return () => clearTimeout(typing);
     } else {
