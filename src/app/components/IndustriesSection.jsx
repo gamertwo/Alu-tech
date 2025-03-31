@@ -88,31 +88,6 @@ const IndustriesSection = () => {
           ))}
         </div>
         
-        {/* Client Logos */}
-        <motion.div 
-          className="mt-20 p-10 bg-sky-600 rounded-xl shadow-lg text-white"
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.7 }}
-          viewport={{ once: true }}
-        >
-          <h3 className="text-2xl font-semibold mb-8 text-center">Trusted By Industry Leaders</h3>
-          <div className="flex flex-wrap justify-center items-center gap-8 md:gap-16">
-            {[1, 2, 3, 4, 5].map((logo) => (
-              <motion.div 
-                key={logo} 
-                className="bg-white bg-opacity-20 backdrop-blur-sm p-4 rounded-lg w-32 h-16 flex items-center justify-center border border-sky-200 border-opacity-30"
-                initial={{ opacity: 0, scale: 0.8 }}
-                whileInView={{ opacity: 1, scale: 1 }}
-                transition={{ duration: 0.3, delay: logo * 0.1 }}
-                viewport={{ once: true }}
-                whileHover={{ scale: 1.1, backgroundColor: "rgba(255, 255, 255, 0.3)" }}
-              >
-                <div className="text-white font-semibold">Client Logo</div>
-              </motion.div>
-            ))}
-          </div>
-        </motion.div>
       </div>
     </section>
   );

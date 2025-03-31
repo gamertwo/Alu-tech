@@ -155,7 +155,7 @@ const ContactSection = ({ formData: externalFormData, handleInputChange: externa
                     </div>
                     <div>
                       <h4 className="font-semibold text-gray-800">Address</h4>
-                      <p className="text-gray-600">123 Aluminium Way, Industrial District<br />New York, NY 10001, USA</p>
+                      <p className="text-gray-600">Racecourse road near Halloki railway station<br />Lahore, Pakistan</p>
                     </div>
                   </div>
                   <div className="flex items-start">
@@ -164,7 +164,7 @@ const ContactSection = ({ formData: externalFormData, handleInputChange: externa
                     </div>
                     <div>
                       <h4 className="font-semibold text-gray-800">Phone</h4>
-                      <p className="text-gray-600">+1 (555) 123-4567</p>
+                      <p className="text-gray-600">+92324 40546327</p>
                     </div>
                   </div>
                   <div className="flex items-start">
@@ -204,8 +204,7 @@ const ContactSection = ({ formData: externalFormData, handleInputChange: externa
                 <div className="mt-6 pt-6 border-t border-gray-200">
                   <h4 className="font-semibold text-gray-800 mb-2">Global Presence</h4>
                   <p className="text-gray-600">
-                    With manufacturing facilities and sales offices across North America, Europe, and Asia, 
-                    we provide local support with global capabilities.
+                    With manufacturing facilities and sales offices across all over Pakistan.
                   </p>
                 </div>
               </motion.div>

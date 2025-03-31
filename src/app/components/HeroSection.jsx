@@ -1,7 +1,7 @@
 // app/components/HeroSection.jsx
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, memo } from "react";
 import { motion } from "framer-motion";
 import Image from "next/image";
 import Link from "next/link";
@@ -13,7 +13,7 @@ const HeroSection = () => {
   const [isTypingComplete, setIsTypingComplete] = useState(false);
   const fullText = "Innovating Aluminium for a Stronger Tomorrow";
   
-  // Typing animation effect
+  // Typing animation effect with optimized performance
   useEffect(() => {
     if (text.length < fullText.length) {
       const typing = setTimeout(() => {
@@ -46,6 +46,7 @@ const HeroSection = () => {
           fill 
           style={{objectFit: "cover"}}
           priority
+          unoptimized
         />
       </div>
       
@@ -57,16 +58,14 @@ const HeroSection = () => {
           className="max-w-2xl"
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8 }}
+          transition={{ duration: 0.5 }}
         >
           <motion.div
             initial={{ opacity: 0, x: -20 }}
             animate={{ opacity: 1, x: 0 }}
-            transition={{ delay: 0.3, duration: 0.6 }}
+            transition={{ delay: 0.2, duration: 0.4 }}
             className="mb-6 inline-block"
-          >
-            
-          </motion.div>
+          />
 
           <h1 className="text-4xl md:text-5xl font-bold mb-4 leading-tight min-h-[3em] md:min-h-[2em]">
             {/* Text with cursor */}
@@ -89,7 +88,7 @@ const HeroSection = () => {
             className="text-xl mb-8 text-blue-50 max-w-xl"
             initial={{ opacity: 0 }}
             animate={{ opacity: isTypingComplete ? 1 : 0 }}
-            transition={{ duration: 0.8, delay: 0.2 }}
+            transition={{ duration: 0.5, delay: 0.1 }}
           >
             Premium aluminium solutions for industrial and commercial needs with unmatched quality and precision.
           </motion.p>
@@ -98,7 +97,7 @@ const HeroSection = () => {
             className="flex flex-wrap items-center gap-6"
             initial={{ opacity: 0 }}
             animate={{ opacity: isTypingComplete ? 1 : 0 }}
-            transition={{ duration: 0.6 }}
+            transition={{ duration: 0.4 }}
           >
             <motion.div
               variants={buttonVariants}
@@ -143,15 +142,9 @@ const HeroSection = () => {
           </motion.div>
         </motion.div>
       </div>
-      
-      {/* Bottom wave decoration */}
-      <div className="absolute bottom-0 left-0 w-full overflow-hidden">
-        <svg className="relative block w-full h-12" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 120" preserveAspectRatio="none">
-          <path d="M0,0V46.29c47.79,22.2,103.59,32.17,158,28,70.36-5.37,136.33-33.31,206.8-37.5C438.64,32.43,512.34,53.67,583,72.05c69.27,18,138.3,24.88,209.4,13.08,36.15-6,69.85-17.84,104.45-29.34C989.49,25,1113-14.29,1200,52.47V0Z" className="fill-blue-800 opacity-20"></path>
-        </svg>
-      </div>
     </section>
   );
 };
 
-export default HeroSection;
+// Memoize component to prevent unnecessary re-renders
+export default memo(HeroSection);

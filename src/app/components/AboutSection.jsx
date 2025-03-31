@@ -4,7 +4,7 @@
 import { useState } from "react";
 import { motion } from "framer-motion";
 import Image from "next/image";
-import { CheckCircle2, Award, Factory, Users, Globe } from "lucide-react";
+import { CheckCircle2, Award, Factory, Users, Globe, Building2 } from "lucide-react";
 
 const AboutSection = () => {
   const [hoveredIndex, setHoveredIndex] = useState(null);
@@ -39,8 +39,27 @@ const AboutSection = () => {
           <h2 className="text-3xl md:text-4xl font-bold text-gray-800 mb-4">About White Gold Aluminium</h2>
           <div className="w-24 h-1 bg-sky-500 mx-auto mb-6"></div>
           <p className="max-w-2xl mx-auto text-gray-600">
-            Pioneering excellence in aluminium solutions with innovation, precision, and unwavering commitment to quality.
+            A proud subsidiary of LLA Long Live Aluminum, pioneering excellence in aluminium solutions with innovation, precision, and unwavering commitment to quality.
           </p>
+        </motion.div>
+        
+        {/* LLA Subsidiary Banner */}
+        <motion.div 
+          className="mb-12 p-4 bg-gradient-to-r from-sky-500 to-blue-600 rounded-lg shadow-lg text-white"
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6 }}
+          viewport={{ once: true }}
+        >
+          <div className="flex flex-col md:flex-row items-center justify-center">
+            <div className="flex items-center mb-3 md:mb-0 md:mr-6">
+              <Building2 className="h-6 w-6 mr-2" />
+              <h3 className="text-xl font-semibold">Subsidiary of LLA Long Live Aluminum</h3>
+            </div>
+            <p className="text-center md:text-left">
+              Leveraging the global strength and resources of our parent company to deliver exceptional quality.
+            </p>
+          </div>
         </motion.div>
         
         <div className="grid md:grid-cols-2 gap-12 items-center">
@@ -54,10 +73,10 @@ const AboutSection = () => {
             <div>
               <h3 className="text-2xl font-semibold mb-4 text-gray-800">Excellence in Aluminium Since 1985</h3>
               <p className="text-gray-600 mb-6 leading-relaxed">
-                With over three decades of expertise, White Gold Aluminium has established itself as an industry leader in premium aluminium solutions. We combine cutting-edge technology with exceptional craftsmanship to deliver superior products that exceed industry standards and client expectations.
+                With over three decades of expertise, White Gold Aluminium has established itself as an industry leader in premium aluminium solutions. As a key subsidiary of LLA Long Live Aluminum, we combine cutting-edge technology with exceptional craftsmanship to deliver superior products that exceed industry standards and client expectations.
               </p>
               <p className="text-gray-600 mb-6 leading-relaxed">
-                Our state-of-the-art manufacturing facilities and dedicated team of professionals ensure consistent quality, innovation, and sustainability across all our operations.
+                Our state-of-the-art manufacturing facilities and dedicated team of professionals ensure consistent quality, innovation, and sustainability across all our operations, backed by the global expertise of LLA.
               </p>
             </div>
             
@@ -136,7 +155,7 @@ const AboutSection = () => {
             <h3 className="text-xl font-semibold">Our Commitment to Excellence</h3>
           </div>
           <p className="max-w-3xl mx-auto">
-            At White Gold Aluminium, we're committed to delivering superior aluminium solutions through innovation, 
+            As part of the LLA Long Live Aluminum family, White Gold Aluminium is committed to delivering superior aluminium solutions through innovation, 
             sustainability, and customer-focused approach. Our dedication to excellence is reflected in every 
             product we manufacture and every service we provide.
           </p>
