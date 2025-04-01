@@ -41,7 +41,7 @@ const HeroSection = () => {
     <section className="relative h-[600px] text-white">
       <div className="absolute inset-0 opacity-30 bg-pattern">
         <Image 
-          src="/Desktop.png" 
+          src="/Desktop2.jpg" 
           alt="Aluminum Production" 
           fill 
           style={{objectFit: "cover"}}
