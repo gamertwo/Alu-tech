@@ -4,7 +4,7 @@
 import { useState } from "react";
 import { motion } from "framer-motion";
 import Link from "next/link";
-import { Phone, Mail, MapPin, Send, ArrowRight } from "lucide-react";
+import { Phone, Mail, MapPin, Send, ArrowRight, CheckCircle, AlertCircle } from "lucide-react";
 
 const ContactSection = ({ formData: externalFormData, handleInputChange: externalHandleInputChange, handleSubmit: externalHandleSubmit } = {}) => {
   // Create local state to use if external props are not provided
@@ -14,6 +14,8 @@ const ContactSection = ({ formData: externalFormData, handleInputChange: externa
     inquiryType: "General",
     message: ""
   });
+  const [status, setStatus] = useState({ type: null, message: null });
+  const [isSubmitting, setIsSubmitting] = useState(false);
 
   // Use external handlers if provided, otherwise use local handlers
   const formData = externalFormData || localFormData;
@@ -26,18 +28,31 @@ const ContactSection = ({ formData: externalFormData, handleInputChange: externa
     }));
   });
   
-  const handleSubmit = externalHandleSubmit || ((e) => {
+  const handleSubmit = externalHandleSubmit || (async (e) => {
     e.preventDefault();
-    console.log("Form submitted:", localFormData);
-    // Here you would typically add your form submission logic
-    alert("Message sent! We'll get back to you soon.");
-    setLocalFormData({
-      name: "",
-      email: "",
-      inquiryType: "General",
-      message: ""
-    });
+    // Silently connect to API without showing any loading state or response
+    
+    try {
+      // Call the API but don't wait for the response or show any feedback
+      fetch('/api/contact', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(localFormData),
+      }).catch((err) => {
+        // Silently handle any errors
+        console.log("Form submission occurred in the background");
+      });
+      
+      // Don't reset form or show any status messages
+      
+    } catch (error) {
+      // Silently catch errors without showing anything to the user
+      console.log("Silent submission occurred");
+    }
   });
+
   return (
     <>
       <section id="contact" className="py-20 bg-sky-50">
@@ -68,6 +83,23 @@ const ContactSection = ({ formData: externalFormData, handleInputChange: externa
               viewport={{ once: true }}
             >
               <h3 className="text-2xl font-semibold mb-6 text-gray-800">Send Us a Message</h3>
+              
+              {/* Status message is hidden since we're doing silent submission */}
+              {false && status.type && (
+                <div className={`mb-6 p-4 rounded-md ${status.type === 'success' ? 'bg-green-50 border border-green-200' : 'bg-red-50 border border-red-200'}`}>
+                  <div className="flex items-center">
+                    {status.type === 'success' ? (
+                      <CheckCircle className="h-5 w-5 text-green-500 mr-2" />
+                    ) : (
+                      <AlertCircle className="h-5 w-5 text-red-500 mr-2" />
+                    )}
+                    <span className={status.type === 'success' ? 'text-green-700' : 'text-red-700'}>
+                      {status.message}
+                    </span>
+                  </div>
+                </div>
+              )}
+              
               <form onSubmit={handleSubmit} className="space-y-4">
                 <div>
                   <label htmlFor="name" className="block text-sm font-medium text-gray-700 mb-1">Name</label>
