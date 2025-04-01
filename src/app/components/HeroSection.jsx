@@ -3,7 +3,6 @@
 
 import { useState, useEffect, memo } from "react";
 import { motion } from "framer-motion";
-import Image from "next/image";
 import Link from "next/link";
 import { ArrowRight } from "lucide-react";
 
@@ -11,6 +10,7 @@ const HeroSection = () => {
   // Typing animation state
   const [text, setText] = useState("");
   const [isTypingComplete, setIsTypingComplete] = useState(false);
+  const [imageLoaded, setImageLoaded] = useState(false);
   const fullText = "Innovating Aluminium for a Stronger Tomorrow";
   
   // Typing animation effect with optimized performance
@@ -37,16 +37,43 @@ const HeroSection = () => {
     tap: { scale: 0.95 }
   };
 
+  // Simulate image loading without using the Image constructor
+  useEffect(() => {
+    // Simulate image loading
+    const timer = setTimeout(() => {
+      setImageLoaded(true);
+    }, 100);
+    
+    return () => clearTimeout(timer);
+  }, []);
+
+  // Notify parent when hero section is fully loaded
+  useEffect(() => {
+    if (isTypingComplete && imageLoaded) {
+      // Dispatch a custom event that can be listened to by the parent component
+      try {
+        const event = new CustomEvent('heroLoaded');
+        window.dispatchEvent(event);
+      } catch (error) {
+        console.error("Error dispatching heroLoaded event:", error);
+      }
+    }
+  }, [isTypingComplete, imageLoaded]);
+
   return (
     <section className="relative h-[600px] text-white">
       <div className="absolute inset-0 opacity-30 bg-pattern">
-        <Image 
-          src="/Desktop2.jpg" 
-          alt="Aluminum Production" 
-          fill 
-          style={{objectFit: "cover"}}
-          priority
-          unoptimized
+        {/* Use a div with background image instead of Next.js Image */}
+        <div 
+          style={{
+            backgroundImage: `url('/Desktop2.jpg')`,
+            backgroundSize: 'cover',
+            backgroundPosition: 'center',
+            width: '100%',
+            height: '100%',
+          }}
+          aria-hidden="true"
+          onLoad={() => setImageLoaded(true)}
         />
       </div>
       

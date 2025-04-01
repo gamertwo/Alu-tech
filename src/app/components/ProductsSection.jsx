@@ -1,9 +1,8 @@
 // app/components/ProductsSection.jsx
 "use client";
 
-import { memo, useState } from "react";
+import { memo, useState, useEffect } from "react";
 import { motion } from "framer-motion";
-import Image from "next/image";
 import Link from "next/link";
 import { ArrowRight, ArrowLeft } from "lucide-react";
 
@@ -75,7 +74,7 @@ const products = [
     }
   },
   {
-    title: "Custom Extrusion",
+    title: "Custom Fabrication",
     image: "/aluminium-fabrication.png",
     description: "Tailored solutions including cutting, bending, welding, and assembly services.",
     backContent: {
@@ -108,6 +107,36 @@ const itemVariants = {
 const ProductsSection = () => {
   // Track which cards are flipped
   const [flippedCards, setFlippedCards] = useState({});
+  // Track loaded images
+  const [loadedImages, setLoadedImages] = useState({});
+
+  // Pre-load images simulated - avoid using Image constructor
+  useEffect(() => {
+    // Create a simulated loading effect for the first 3 images
+    const timer1 = setTimeout(() => {
+      setLoadedImages(prev => ({
+        ...prev,
+        0: true,
+        1: true,
+        2: true
+      }));
+    }, 200);
+    
+    // Load the rest with a delay
+    const timer2 = setTimeout(() => {
+      setLoadedImages(prev => ({
+        ...prev,
+        3: true,
+        4: true,
+        5: true
+      }));
+    }, 1000);
+    
+    return () => {
+      clearTimeout(timer1);
+      clearTimeout(timer2);
+    };
+  }, []);
 
   // Handle card flip
   const handleFlip = (index) => {
@@ -145,7 +174,7 @@ const ProductsSection = () => {
           viewport={{ once: true, margin: "-50px" }}
         >
           {products.map((product, index) => (
-                          <motion.div 
+            <motion.div 
               key={index} 
               className="h-[450px] perspective-1000"
               variants={itemVariants}
@@ -162,14 +191,20 @@ const ProductsSection = () => {
                 {/* Front of Card */}
                 <div className="absolute w-full h-full backface-hidden bg-white rounded-lg overflow-hidden shadow-md group hover:shadow-xl transition-shadow duration-300">
                   <div className="relative h-56 overflow-hidden">
-                    <Image 
-                      src={product.image} 
-                      alt={product.title} 
-                      fill 
-                      unoptimized
-                      style={{objectFit: "cover"}}
-                      className="transition-transform duration-500 group-hover:scale-105"
-                      loading={index < 3 ? "eager" : "lazy"}
+                    {/* Show skeleton loader until image loads */}
+                    {!loadedImages[index] && (
+                      <div className="absolute inset-0 bg-slate-200 animate-pulse"></div>
+                    )}
+                    {/* Use div with background image instead of Next.js Image */}
+                    <div 
+                      className="transition-transform duration-500 group-hover:scale-105 h-full w-full"
+                      style={{
+                        backgroundImage: `url(${product.image})`,
+                        backgroundSize: 'cover',
+                        backgroundPosition: 'center',
+                        opacity: loadedImages[index] ? 1 : 0,
+                        transition: "opacity 0.3s ease-in-out"
+                      }}
                     />
                     <div className="absolute inset-0 bg-gradient-to-t from-slate-900 to-transparent opacity-0 group-hover:opacity-30 transition-opacity duration-300"></div>
                   </div>
