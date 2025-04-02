@@ -102,7 +102,7 @@ export const productData = [
     {
       id: 'windows',
       title: "Window & Door Profiles",
-      image: "/projects/Modern residences.jfif",
+      image: "/projects/Modern residences.jpg",
       description: "Specialized aluminum profiles designed for high-performance windows and door systems.",
       rating: 5,
       reviews: 52,
@@ -118,7 +118,7 @@ export const productData = [
     {
       id: 'solar',
       title: "Solar Panel Channels",
-      image: "/projects/Modern residences two.jfif",
+      image: "/projects/Modern residences two.jpg",
       description: "Specialized aluminum mounting systems for efficient solar panel installation and performance.",
       rating: 4,
       reviews: 27,
