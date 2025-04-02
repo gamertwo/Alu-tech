@@ -273,10 +273,10 @@ const ProductsSection = () => {
           viewport={{ once: true }}
         >
           <Link 
-            href="#contact" 
+            href="/services" 
             className="inline-flex items-center px-8 py-3 bg-blue-600 hover:bg-blue-700 text-white font-medium rounded-md shadow-md transition-colors duration-300 group"
           >
-            See more products
+            See more services
             <span className="ml-2 transition-transform duration-300 group-hover:translate-x-1">
               <ArrowRight className="h-5 w-5" />
             </span>

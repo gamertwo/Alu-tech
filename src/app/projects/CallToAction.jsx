@@ -73,10 +73,10 @@ const CallToAction = () => {
                 whileTap={{ y: 0 }}
               >
                 <Link 
-                  href="/products" 
+                  href="/services" 
                   className="bg-transparent border-2 border-white hover:bg-white/10 text-white px-8 py-3 rounded-md font-medium transition-colors inline-flex items-center justify-center whitespace-nowrap"
                 >
-                  View Products
+                  View Services
                 </Link>
               </motion.div>
             </div>

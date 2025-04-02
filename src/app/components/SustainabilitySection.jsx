@@ -54,7 +54,7 @@ const SustainabilitySection = () => {
           viewport={{ once: true }}
         >
           <h2 className="text-3xl font-bold text-gray-800 mb-4">Sustainability & Innovation</h2>
-          <div className="w-20 h-1 bg-amber-600 mx-auto mb-6"></div>
+          <div className="w-20 h-1 bg-blue-600 mx-auto mb-6"></div>
           <p className="max-w-2xl mx-auto text-gray-600">
             We're committed to environmentally responsible practices and continuous innovation.
           </p>

@@ -163,7 +163,7 @@ export default function Catalog() {
                       Our team is available to help you find the right aluminium solutions for your project.
                     </p>
                     <p>
-                      Contact our product specialists at <span className="font-medium">0324 4054632</span> or email us at <span className="font-medium">info@whitegoldaluminium.com</span>
+                      Contact our product specialists at <span className="font-medium">+92 324 4054632</span> or email us at <span className="font-medium">info@whitegoldaluminium.com</span>
                     </p>
                   </div>
                 </div>
@@ -209,10 +209,10 @@ export default function Catalog() {
                   whileTap="tap"
                 >
                   <Link 
-                    href="/products" 
+                    href="/services" 
                     className="bg-transparent border-2 border-blue-600 text-blue-600 hover:bg-blue-50 px-8 py-3 rounded-md font-medium transition-all duration-300 inline-block"
                   >
-                    View All Products
+                    View All Services
                   </Link>
                 </motion.div>
               </div>

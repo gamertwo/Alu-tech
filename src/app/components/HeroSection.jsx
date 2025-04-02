@@ -134,7 +134,7 @@ const HeroSection = () => {
               className="w-auto"
             >
               <Link 
-                href="#contact" 
+                href="/contact" 
                 className="group bg-blue-400 hover:bg-blue-500 text-white px-8 py-3 rounded-md font-medium transition-all duration-300 flex items-center shadow-md overflow-hidden relative"
               >
                 <span className="relative z-10">Get a Quote</span>
@@ -154,10 +154,10 @@ const HeroSection = () => {
               className="w-auto"
             >
               <Link 
-                href="#products" 
+                href="/services" 
                 className="group bg-transparent border-2 border-blue-200 hover:border-blue-100 text-white px-8 py-3 rounded-md font-medium transition-all duration-300 flex items-center overflow-hidden relative"
               >
-                <span className="relative z-10">View Products</span>
+                <span className="relative z-10">View Services</span>
                 <motion.span 
                   className="relative z-10 ml-2 transform transition-transform duration-300 group-hover:translate-x-1"
                 >

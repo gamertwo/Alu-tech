@@ -1,11 +1,42 @@
 'use client';
 
+import { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import PageHeader from './PageHeader';
 import ProductGrid from './ProductGrid';
 import { productData } from './productData';
 
 const ProductOverview = () => {
+  const [isLoading, setIsLoading] = useState(true);
+  const [products, setProducts] = useState([]);
+
+  // Simulate data loading with useEffect
+  useEffect(() => {
+    // This ensures data is properly loaded before rendering
+    const loadProducts = () => {
+      // Add artificial delay to ensure proper hydration
+      setTimeout(() => {
+        setProducts(productData);
+        setIsLoading(false);
+      }, 300);
+    };
+
+    loadProducts();
+    
+    // Add event listener for page visibility to handle refresh
+    const handleVisibilityChange = () => {
+      if (document.visibilityState === 'visible') {
+        loadProducts();
+      }
+    };
+    
+    document.addEventListener('visibilitychange', handleVisibilityChange);
+    
+    return () => {
+      document.removeEventListener('visibilitychange', handleVisibilityChange);
+    };
+  }, []);
+
   return (
     <div className="bg-gray-50">
       {/* Page Header with title, subtitle and intro */}
@@ -33,8 +64,15 @@ const ProductOverview = () => {
             </p>
           </motion.div>
           
-          {/* Product Grid */}
-          <ProductGrid products={productData} />
+          {/* Loading State */}
+          {isLoading ? (
+            <div className="flex justify-center items-center h-64">
+              <div className="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-blue-600"></div>
+            </div>
+          ) : (
+            /* Product Grid */
+            <ProductGrid products={products} />
+          )}
           
           {/* Call to Action */}
           <motion.div 

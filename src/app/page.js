@@ -1,40 +1,19 @@
-// src/app/page.js
 "use client";
 
-import { useState, Suspense, lazy, useEffect } from "react";
-import dynamic from "next/dynamic";
+import { useState, lazy, useEffect } from "react";
 import Header from "@/app/components/Header";
 import HeroSection from "@/app/components/HeroSection";
+import LazyComponent from "@/app/components/LazyComponent";
+import useLazyLoad from "@/app/hooks/useLazyLoad";
 
-// Simple loading component
-const SectionLoader = () => (
-  <div className="py-20 flex items-center justify-center">
-    <div className="animate-pulse bg-gray-200 h-64 w-full max-w-4xl rounded-lg"></div>
-  </div>
-);
-
-// Lazy load sections with control for progressive rendering
+// Lazy load all sections
 const ProductsSection = lazy(() => import("@/app/components/ProductsSection"));
 const AboutSection = lazy(() => import("@/app/components/AboutSection"));
 const FeaturesSection = lazy(() => import("@/app/components/FeaturesSection"));
 const IndustriesSection = lazy(() => import("@/app/components/IndustriesSection"));
-
-// Components that are well below the fold can be loaded with more delay
-const SustainabilitySection = dynamic(() => import("@/app/components/SustainabilitySection"), {
-  ssr: false,
-  loading: () => <div className="h-96 flex items-center justify-center">Loading sustainability information...</div>
-});
-
-const ManufacturingProcess = dynamic(() => import("@/app/components/ManufacturingProcess"), {
-  ssr: false,
-  loading: () => <div className="h-96 flex items-center justify-center">Loading manufacturing process...</div>
-});
-
-const ContactSection = dynamic(() => import("@/app/components/ContactSection"), {
-  ssr: true,
-  loading: () => <div className="h-96 flex items-center justify-center">Loading contact form...</div>
-});
-
+const SustainabilitySection = lazy(() => import("@/app/components/SustainabilitySection"));
+const ManufacturingProcess = lazy(() => import("@/app/components/ManufacturingProcess"));
+const ContactSection = lazy(() => import("@/app/components/ContactSection"));
 const Footer = lazy(() => import("@/app/components/Footer"));
 const ChatButton = lazy(() => import("@/app/components/ChatButton"));
 
@@ -46,77 +25,12 @@ export default function WhiteGoldAluminiumPage() {
     message: ""
   });
   
-  // Track loading state
-  const [heroLoaded, setHeroLoaded] = useState(false);
-  const [sectionsVisible, setSectionsVisible] = useState({
-    products: false,
-    about: false,
-    features: false,
-    industries: false,
-    manufacturing: false,
-    sustainability: false,
-    contact: false
-  });
-
-  // Progressive loading based on hero section completion and scroll position
+  // Specifically for Chat Button which follows scroll
+  const shouldLoadChat = useLazyLoad('chat-trigger', 100);
+  
+  // Prefetch critical images
   useEffect(() => {
-    // Listen for hero section load completion
-    const handleHeroLoaded = () => {
-      setHeroLoaded(true);
-      // Immediately show first section after hero loads
-      setSectionsVisible(prev => ({
-        ...prev,
-        products: true
-      }));
-    };
-
-    window.addEventListener('heroLoaded', handleHeroLoaded);
-
-    // Set up intersection observers for progressive loading
-    const setupObservers = () => {
-      const options = {
-        root: null,
-        rootMargin: '200px', // Load when within 200px of viewport
-        threshold: 0.1
-      };
-
-      // Create observers for each section
-      const createObserver = (id, sectionName) => {
-        const element = document.getElementById(id);
-        if (!element) return;
-
-        const observer = new IntersectionObserver(entries => {
-          entries.forEach(entry => {
-            if (entry.isIntersecting) {
-              setSectionsVisible(prev => ({
-                ...prev,
-                [sectionName]: true
-              }));
-              observer.unobserve(entry.target);
-            }
-          });
-        }, options);
-
-        observer.observe(element);
-        return observer;
-      };
-
-      // Set up observers with slight delays to prioritize
-      setTimeout(() => createObserver('about', 'about'), 100);
-      setTimeout(() => createObserver('features', 'features'), 200);
-      setTimeout(() => createObserver('industries', 'industries'), 300);
-      setTimeout(() => createObserver('manufacturing', 'manufacturing'), 400);
-      setTimeout(() => createObserver('sustainability', 'sustainability'), 500);
-      setTimeout(() => createObserver('contact', 'contact'), 600);
-    };
-
-    // After hero loads, set up observers for other sections
-    if (heroLoaded) {
-      setupObservers();
-    }
-
-    // Prefetch key images on page load
-    const prefetchImages = async () => {
+    const prefetchImages = () => {
       const imageUrls = [
         '/Desktop2.jpg',
         '/aluminum-extrusion.png',
@@ -130,11 +44,7 @@ export default function WhiteGoldAluminiumPage() {
     };
 
     prefetchImages();
-
-    return () => {
-      window.removeEventListener('heroLoaded', handleHeroLoaded);
-    };
-  }, [heroLoaded]);
+  }, []);
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
@@ -146,7 +56,6 @@ export default function WhiteGoldAluminiumPage() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    // In a real app, you would handle form submission here
     console.log("Form submitted:", formData);
     alert("Thank you for your inquiry! We'll get back to you soon.");
     setFormData({
@@ -157,102 +66,78 @@ export default function WhiteGoldAluminiumPage() {
     });
   };
 
+  // Contact form props
+  const contactProps = {
+    formData,
+    handleInputChange,
+    handleSubmit
+  };
+
   return (
     <div className="flex flex-col min-h-screen">
       <Header />
       <main>
-        {/* Critical above-the-fold content loads immediately */}
+        {/* Hero loads immediately */}
         <HeroSection />
         
-        {/* Progressive loading of sections after hero is loaded */}
-        <div id="products">
-          {heroLoaded && sectionsVisible.products ? (
-            <Suspense fallback={<SectionLoader />}>
-              <ProductsSection />
-            </Suspense>
-          ) : (
-            <SectionLoader />
-          )}
-        </div>
+        {/* Each section loads completely independently */}
+        <LazyComponent
+          id="products"
+          component={ProductsSection}
+          margin={300}
+          priority={true} // Load immediately after hero
+        />
         
-        <div id="about">
-          {heroLoaded && sectionsVisible.about ? (
-            <Suspense fallback={<SectionLoader />}>
-              <AboutSection />
-            </Suspense>
-          ) : (
-            <SectionLoader />
-          )}
-        </div>
+        <LazyComponent
+          id="about"
+          component={AboutSection}
+        />
         
-        <div id="features">
-          {heroLoaded && sectionsVisible.features ? (
-            <Suspense fallback={<SectionLoader />}>
-              <FeaturesSection />
-            </Suspense>
-          ) : (
-            <SectionLoader />
-          )}
-        </div>
+        <LazyComponent
+          id="features"
+          component={FeaturesSection}
+        />
         
-        <div id="manufacturing">
-          {heroLoaded && sectionsVisible.manufacturing ? (
-            <Suspense fallback={<SectionLoader />}>
-              <ManufacturingProcess />
-            </Suspense>
-          ) : (
-            <SectionLoader />
-          )}
-        </div>
+        <LazyComponent
+          id="manufacturing"
+          component={ManufacturingProcess}
+        />
         
-        <div id="industries">
-          {heroLoaded && sectionsVisible.industries ? (
-            <Suspense fallback={<SectionLoader />}>
-              <IndustriesSection />
-            </Suspense>
-          ) : (
-            <SectionLoader />
-          )}
-        </div>
+        <LazyComponent
+          id="industries"
+          component={IndustriesSection}
+        />
         
-        <div id="sustainability">
-          {heroLoaded && sectionsVisible.sustainability ? (
-            <Suspense fallback={<SectionLoader />}>
-              <SustainabilitySection />
-            </Suspense>
-          ) : (
-            <SectionLoader />
-          )}
-        </div>
+        <LazyComponent
+          id="sustainability"
+          component={SustainabilitySection}
+        />
         
-        <div id="contact">
-          {heroLoaded && sectionsVisible.contact ? (
-            <Suspense fallback={<SectionLoader />}>
-              <ContactSection 
-                formData={formData}
-                handleInputChange={handleInputChange}
-                handleSubmit={handleSubmit}
-              />
-            </Suspense>
-          ) : (
-            <SectionLoader />
-          )}
-        </div>
+        <LazyComponent
+          id="contact"
+          component={ContactSection}
+          componentProps={contactProps}
+        />
       </main>
       
-      {heroLoaded ? (
-        <Suspense fallback={<div className="h-20"></div>}>
-          <Footer />
-        </Suspense>
-      ) : (
-        <div className="h-20"></div>
-      )}
+      <LazyComponent
+        id="footer"
+        component={Footer}
+        loadingComponent={() => <div className="h-20"></div>}
+      />
       
-      {heroLoaded ? (
-        <Suspense fallback={null}>
-          <ChatButton />
-        </Suspense>
-      ) : null}
+      {/* Invisible element for chat button trigger */}
+      <div id="chat-trigger" className="h-0 w-0"></div>
+      
+      {/* Chat button appears after scrolling */}
+      {shouldLoadChat && (
+        <LazyComponent
+          id="chat-button"
+          component={ChatButton}
+          priority={true} // Always load once the chat-trigger is in view
+          loadingComponent={() => null}
+        />
+      )}
     </div>
   );
 }

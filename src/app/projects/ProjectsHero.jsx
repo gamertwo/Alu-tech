@@ -13,13 +13,7 @@ const ProjectsHero = () => {
   return (
     <section className="relative h-[500px] bg-gradient-to-r from-sky-700 to-sky-500 text-white">
       <div className="absolute inset-0 opacity-30">
-        <Image 
-          src="/projects/hero-background.jpg" 
-          alt="White Gold Aluminum Projects" 
-          fill 
-          style={{objectFit: "cover"}}
-          priority
-        />
+        
       </div>
       
       {/* Overlay pattern */}
