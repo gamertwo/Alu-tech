@@ -92,7 +92,7 @@ export default function ContactPage() {
             <h1 className="text-4xl md:text-5xl font-bold mb-6">Contact Us</h1>
             <div className="w-24 h-1 bg-sky-400 mx-auto mb-6"></div>
             <p className="text-lg text-sky-100 mb-8">
-              Get in touch with our team to discuss your aluminium needs. We're here to help with any questions or inquiries.
+              Get in touch with our team to discuss your aluminum needs. We're here to help with any questions or inquiries.
             </p>
           </div>
         </div>
@@ -136,7 +136,7 @@ export default function ContactPage() {
                     </div>
                     <div>
                       <h3 className="font-medium text-gray-800">Email</h3>
-                      <p className="text-gray-600 mt-1">info@whitegoldaluminium.com</p>
+                      <p className="text-gray-600 mt-1">info@whitegoldaluminum.com</p>
                     </div>
                   </div>
                 </div>

@@ -62,7 +62,7 @@ const HeroSection = () => {
 
   return (
     <section className="relative h-[600px] text-white">
-      <div className="absolute inset-0 opacity-30 bg-pattern">
+      <div className="absolute inset-0 opacity-30 ">
         {/* Use a div with background image instead of Next.js Image */}
         <div 
           style={{
