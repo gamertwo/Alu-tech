@@ -61,9 +61,12 @@ const HeroSection = () => {
   }, [isTypingComplete, imageLoaded]);
 
   return (
-    <section className="relative h-[600px] text-white">
-      <div className="absolute inset-0 opacity-30 ">
-        {/* Use a div with background image instead of Next.js Image */}
+    <section className="relative h-[500px] md:h-[600px] text-white overflow-hidden">
+      {/* Dark overlay that will ensure image remains visible on all devices */}
+      <div className="absolute inset-0 bg-black opacity-70 z-[1]"></div>
+      
+      {/* Background image with proper opacity and z-index */}
+      <div className="absolute inset-0 z-0">
         <div 
           style={{
             backgroundImage: `url('/Desktop2.jpg')`,
@@ -71,15 +74,15 @@ const HeroSection = () => {
             backgroundPosition: 'center',
             width: '100%',
             height: '100%',
+            opacity: 0.7,  // Keep consistent opacity
           }}
           aria-hidden="true"
           onLoad={() => setImageLoaded(true)}
+          className="bg-no-repeat"
         />
       </div>
       
-      {/* Subtle animated overlay */}
-      <div className="absolute inset-0 opacity-60"></div>
-      
+      {/* Content positioned above the background with higher z-index */}
       <div className="container mx-auto px-4 h-full flex flex-col justify-center relative z-10">
         <motion.div 
           className="max-w-2xl"
@@ -94,10 +97,10 @@ const HeroSection = () => {
             className="mb-6 inline-block"
           />
 
-          <h1 className="text-4xl md:text-5xl font-bold mb-4 leading-tight min-h-[3em] md:min-h-[2em]">
+          <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold mb-4 leading-tight">
             {/* Text with cursor */}
             <span>{text}</span>
-            <span className={`inline-block w-1 h-8 ml-1 bg-blue-200 ${isTypingComplete ? 'animate-pulse' : ''}`}></span>
+            <span className={`inline-block w-1 h-6 sm:h-8 ml-1 bg-blue-200 ${isTypingComplete ? 'animate-pulse' : ''}`}></span>
             {/* Show the static highlighted text only after typing is complete */}
             {isTypingComplete && (
               <motion.span 
@@ -112,7 +115,7 @@ const HeroSection = () => {
           </h1>
           
           <motion.p 
-            className="text-xl mb-8 text-blue-50 max-w-xl"
+            className="text-lg sm:text-xl mb-6 md:mb-8 text-blue-50 max-w-xl"
             initial={{ opacity: 0 }}
             animate={{ opacity: isTypingComplete ? 1 : 0 }}
             transition={{ duration: 0.5, delay: 0.1 }}
@@ -121,7 +124,7 @@ const HeroSection = () => {
           </motion.p>
           
           <motion.div
-            className="flex flex-wrap items-center gap-6"
+            className="flex flex-col sm:flex-row sm:flex-wrap items-center gap-4 sm:gap-6"
             initial={{ opacity: 0 }}
             animate={{ opacity: isTypingComplete ? 1 : 0 }}
             transition={{ duration: 0.4 }}
@@ -131,11 +134,11 @@ const HeroSection = () => {
               initial="initial"
               whileHover="hover"
               whileTap="tap"
-              className="w-auto"
+              className="w-full sm:w-auto"
             >
               <Link 
                 href="/contact" 
-                className="group bg-blue-400 hover:bg-blue-500 text-white px-8 py-3 rounded-md font-medium transition-all duration-300 flex items-center shadow-md overflow-hidden relative"
+                className="group bg-blue-400 hover:bg-blue-500 text-white px-6 sm:px-8 py-3 rounded-md font-medium transition-all duration-300 flex items-center justify-center sm:justify-start shadow-md overflow-hidden relative w-full sm:w-auto"
               >
                 <span className="relative z-10">Get a Quote</span>
                 <motion.span 
@@ -151,11 +154,11 @@ const HeroSection = () => {
               initial="initial"
               whileHover="hover"
               whileTap="tap"
-              className="w-auto"
+              className="w-full sm:w-auto mt-4 sm:mt-0"
             >
               <Link 
                 href="/services" 
-                className="group bg-transparent border-2 border-blue-200 hover:border-blue-100 text-white px-8 py-3 rounded-md font-medium transition-all duration-300 flex items-center overflow-hidden relative"
+                className="group bg-transparent border-2 border-blue-200 hover:border-blue-100 text-white px-6 sm:px-8 py-3 rounded-md font-medium transition-all duration-300 flex items-center justify-center sm:justify-start overflow-hidden relative w-full sm:w-auto"
               >
                 <span className="relative z-10">View Services</span>
                 <motion.span 
@@ -169,6 +172,9 @@ const HeroSection = () => {
           </motion.div>
         </motion.div>
       </div>
+      
+      {/* Additional gradient overlay to ensure text readability */}
+      <div className="absolute inset-0 bg-gradient-to-r from-black via-transparent to-black opacity-30 z-[2] pointer-events-none"></div>
     </section>
   );
 };
