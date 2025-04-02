@@ -70,7 +70,7 @@ const ContactSection = ({ formData: externalFormData, handleInputChange: externa
             <h2 className="text-3xl md:text-4xl font-bold text-gray-800 mb-4">Contact Us</h2>
             <div className="w-24 h-1 bg-sky-500 mx-auto mb-6"></div>
             <p className="max-w-2xl mx-auto text-gray-600">
-              Get in touch with our team to discuss your aluminium needs and how we can help.
+              Get in touch with our team to discuss your aluminum needs and how we can help.
             </p>
           </motion.div>
           
@@ -205,7 +205,7 @@ const ContactSection = ({ formData: externalFormData, handleInputChange: externa
                     </div>
                     <div>
                       <h4 className="font-semibold text-gray-800">Email</h4>
-                      <p className="text-gray-600">info@whitegoldaluminium.com</p>
+                      <p className="text-gray-600">info@whitegoldaluminum.com</p>
                     </div>
                   </div>
                 </div>
@@ -254,9 +254,9 @@ const ContactSection = ({ formData: externalFormData, handleInputChange: externa
             transition={{ duration: 0.6 }}
             viewport={{ once: true }}
           >
-            <h2 className="text-3xl font-bold mb-6">Ready to Start Your Aluminium Project?</h2>
+            <h2 className="text-3xl font-bold mb-6">Ready to Start Your Aluminum Project?</h2>
             <p className="max-w-2xl mx-auto mb-8 text-sky-100">
-              Partner with White Gold Aluminium for innovative aluminium solutions that deliver performance, quality, and value.
+              Partner with White Gold Aluminum for innovative Aluminum solutions that deliver performance, quality, and value.
             </p>
             <div className="flex flex-wrap justify-center gap-4">
               <motion.div

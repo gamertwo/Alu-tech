@@ -36,10 +36,10 @@ const AboutSection = () => {
           <span className="inline-block px-4 py-1 rounded-full bg-sky-100 text-sky-600 text-sm font-medium mb-4">
             Our Legacy
           </span>
-          <h2 className="text-3xl md:text-4xl font-bold text-gray-800 mb-4">About White Gold Aluminium</h2>
+          <h2 className="text-3xl md:text-4xl font-bold text-gray-800 mb-4">About White Gold Aluminum</h2>
           <div className="w-24 h-1 bg-sky-500 mx-auto mb-6"></div>
           <p className="max-w-2xl mx-auto text-gray-600">
-            A proud subsidiary of LLA Long Live Aluminum, pioneering excellence in aluminium solutions with innovation, precision, and unwavering commitment to quality.
+            A proud subsidiary of LLA Long Live Aluminum, pioneering excellence in Aluminum solutions with innovation, precision, and unwavering commitment to quality.
           </p>
         </motion.div>
         
@@ -71,9 +71,9 @@ const AboutSection = () => {
             className="space-y-8"
           >
             <div>
-              <h3 className="text-2xl font-semibold mb-4 text-gray-800">Excellence in Aluminium Since 1985</h3>
+              <h3 className="text-2xl font-semibold mb-4 text-gray-800">Excellence in Aluminum Since 1985</h3>
               <p className="text-gray-600 mb-6 leading-relaxed">
-                With over three decades of expertise, White Gold Aluminium has established itself as an industry leader in premium aluminium solutions. As a key subsidiary of LLA Long Live Aluminum, we combine cutting-edge technology with exceptional craftsmanship to deliver superior products that exceed industry standards and client expectations.
+                With over three decades of expertise, White Gold Aluminum has established itself as an industry leader in premium Aluminum solutions. As a key subsidiary of LLA Long Live Aluminum, we combine cutting-edge technology with exceptional craftsmanship to deliver superior products that exceed industry standards and client expectations.
               </p>
               <p className="text-gray-600 mb-6 leading-relaxed">
                 Our state-of-the-art manufacturing facilities and dedicated team of professionals ensure consistent quality, innovation, and sustainability across all our operations, backed by the global expertise of LLA.
@@ -155,7 +155,7 @@ const AboutSection = () => {
             <h3 className="text-xl font-semibold">Our Commitment to Excellence</h3>
           </div>
           <p className="max-w-3xl mx-auto">
-            As part of the LLA Long Live Aluminum family, White Gold Aluminium is committed to delivering superior aluminium solutions through innovation, 
+            As part of the LLA Long Live Aluminum family, White Gold Aluminum is committed to delivering superior Aluminum solutions through innovation, 
             sustainability, and customer-focused approach. Our dedication to excellence is reflected in every 
             product we manufacture and every service we provide.
           </p>

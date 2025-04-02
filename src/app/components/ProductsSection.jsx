@@ -9,7 +9,7 @@ import { ArrowRight, ArrowLeft } from "lucide-react";
 // Product data with front and back content
 const products = [
   {
-    title: "Aluminium Extrusions",
+    title: "Aluminum Extrusions",
     image: "/aluminum-extrusion.png",
     description: "Custom and standard profiles for various applications with precise tolerances.",
     backContent: {
@@ -22,7 +22,7 @@ const products = [
     }
   },
   {
-    title: "Aluminium Sheets & Plates",
+    title: "Aluminum Sheets & Plates",
     image: "/aluminum-sheets.png",
     description: "High-quality flat-rolled products available in various alloys, tempers, and dimensions.",
     backContent: {
@@ -35,7 +35,7 @@ const products = [
     }
   },
   {
-    title: "Aluminium Castings",
+    title: "Aluminum Castings",
     image: "/aluminum-casting.png",
     description: "Die-cast and sand-cast components with excellent surface finish and dimensional accuracy.",
     backContent: {
@@ -63,7 +63,7 @@ const products = [
   {
     title: "CNC Machining",
     image: "/CNC-machine.png",
-    description: "Precision machining services for complex aluminium components with tight tolerances.",
+    description: "Precision machining services for complex Aluminum components with tight tolerances.",
     backContent: {
       details: [
         { label: "Precision Tolerance", value: "±0.01mm" },
@@ -159,10 +159,10 @@ const ProductsSection = () => {
           <span className="inline-block px-4 py-1 rounded-full bg-blue-50 text-blue-600 text-sm font-medium mb-4">
             Our Solutions
           </span>
-          <h2 className="text-3xl md:text-4xl font-bold text-slate-800 mb-4">Premium Aluminium Products</h2>
+          <h2 className="text-3xl md:text-4xl font-bold text-slate-800 mb-4">Premium Aluminum Products</h2>
           <div className="w-24 h-1 bg-blue-500 mx-auto mb-6"></div>
           <p className="max-w-2xl mx-auto text-slate-600">
-            We offer a comprehensive range of high-quality aluminium products and services tailored to meet diverse industry needs.
+            We offer a comprehensive range of high-quality Aluminum products and services tailored to meet diverse industry needs.
           </p>
         </motion.div>
         

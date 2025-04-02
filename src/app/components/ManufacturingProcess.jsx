@@ -13,7 +13,7 @@ const ManufacturingProcess = () => {
     {
       id: 1,
       title: "Billet Preparation",
-      description: "Raw material selection (6061, 6063, 7075 alloys) and billet preheating (400–500°C) to prepare the aluminium for extrusion.",
+      description: "Raw material selection (6061, 6063, 7075 alloys) and billet preheating (400–500°C) to prepare the Aluminum for extrusion.",
       icon: "/billet-icon.jpg",
       animation: "fadeInLeft"
     },
@@ -87,7 +87,7 @@ const ManufacturingProcess = () => {
           <h2 className="text-3xl md:text-4xl font-bold text-gray-800 mb-4">Our Manufacturing Process</h2>
           <div className="w-24 h-1 bg-sky-500 mx-auto mb-6"></div>
           <p className="max-w-2xl mx-auto text-gray-600 text-lg">
-            Discover how we transform raw aluminium into premium quality products through our innovative and precision-driven manufacturing process.
+            Discover how we transform raw Aluminum into premium quality products through our innovative and precision-driven manufacturing process.
           </p>
         </motion.div>
 

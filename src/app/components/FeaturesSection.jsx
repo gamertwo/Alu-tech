@@ -43,10 +43,10 @@ const FeaturesSection = () => {
           <span className="inline-block px-4 py-1 rounded-full bg-sky-100 text-sky-600 text-sm font-medium mb-4">
             Our Advantages
           </span>
-          <h2 className="text-3xl md:text-4xl font-bold text-gray-800 mb-4">Why Choose White Gold Aluminium</h2>
+          <h2 className="text-3xl md:text-4xl font-bold text-gray-800 mb-4">Why Choose White Gold Aluminum</h2>
           <div className="w-24 h-1 bg-sky-500 mx-auto mb-6"></div>
           <p className="max-w-2xl mx-auto text-gray-600">
-            Our unwavering commitment to excellence and innovation sets us apart in the aluminium industry.
+            Our unwavering commitment to excellence and innovation sets us apart in the Aluminum industry.
           </p>
         </motion.div>
         
@@ -81,8 +81,8 @@ const FeaturesSection = () => {
           <div className="md:w-1/2 mb-6 md:mb-0 md:pr-8">
             <h3 className="text-2xl font-semibold mb-4 text-gray-800">Industry Recognition</h3>
             <p className="text-gray-600 mb-4">
-              White Gold Aluminium has been recognized for excellence in product quality, innovation, and sustainability
-              by leading industry organizations. Our award-winning solutions have set new standards in the aluminium industry.
+              White Gold Aluminum has been recognized for excellence in product quality, innovation, and sustainability
+              by leading industry organizations. Our award-winning solutions have set new standards in the Aluminum industry.
             </p>
             <div className="flex space-x-2 mt-4">
               <span className="bg-sky-100 text-sky-700 text-sm py-1 px-3 rounded-full font-medium">Award Winning</span>

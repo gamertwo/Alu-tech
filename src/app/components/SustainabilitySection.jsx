@@ -10,7 +10,7 @@ const SustainabilitySection = () => {
     { 
       icon: <Recycle className="h-6 w-6 text-green-600 mt-1 mr-3" />,
       title: "100% Recyclable Material",
-      description: "Our aluminium products are fully recyclable, supporting a circular economy."
+      description: "Our Aluminum products are fully recyclable, supporting a circular economy."
     },
     {
       icon: <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6 text-green-600 mt-1 mr-3" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -24,14 +24,14 @@ const SustainabilitySection = () => {
         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 10V3L4 14h7v7l9-11h-7z" />
       </svg>,
       title: "Energy-Efficient Products",
-      description: "Our aluminium solutions help customers reduce their energy consumption."
+      description: "Our Aluminum solutions help customers reduce their energy consumption."
     }
   ];
 
   const innovations = [
     {
       title: "Advanced Alloys",
-      description: "Developing next-generation aluminium alloys with enhanced properties for demanding applications."
+      description: "Developing next-generation Aluminum alloys with enhanced properties for demanding applications."
     },
     {
       title: "Smart Manufacturing",
@@ -39,7 +39,7 @@ const SustainabilitySection = () => {
     },
     {
       title: "Digital Solutions",
-      description: "Online tools for customers to design, visualize, and order custom aluminium products."
+      description: "Online tools for customers to design, visualize, and order custom Aluminum products."
     }
   ];
 
@@ -68,9 +68,9 @@ const SustainabilitySection = () => {
             transition={{ duration: 0.6 }}
             viewport={{ once: true }}
           >
-            <h3 className="text-2xl font-semibold mb-4 text-gray-800">Leading the Way in Sustainable Aluminium</h3>
+            <h3 className="text-2xl font-semibold mb-4 text-gray-800">Leading the Way in Sustainable Aluminum</h3>
             <p className="text-gray-600 mb-6">
-              At White Gold Aluminium, sustainability isn't just a buzzword—it's integrated into everything we do. 
+              At White Gold Aluminum, sustainability isn't just a buzzword—it's integrated into everything we do. 
               Our state-of-the-art facilities are designed to minimize environmental impact while 
               maximizing efficiency and product quality.
             </p>

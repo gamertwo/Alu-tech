@@ -11,7 +11,7 @@ const HeroSection = () => {
   const [text, setText] = useState("");
   const [isTypingComplete, setIsTypingComplete] = useState(false);
   const [imageLoaded, setImageLoaded] = useState(false);
-  const fullText = "Innovating Aluminium for a Stronger Tomorrow";
+  const fullText = "Innovating Aluminum for a Stronger Tomorrow";
   
   // Typing animation effect with optimized performance
   useEffect(() => {
@@ -117,7 +117,7 @@ const HeroSection = () => {
             animate={{ opacity: isTypingComplete ? 1 : 0 }}
             transition={{ duration: 0.5, delay: 0.1 }}
           >
-            Premium aluminium solutions for industrial and commercial needs with unmatched quality and precision.
+            Premium Aluminum solutions for industrial and commercial needs with unmatched quality and precision.
           </motion.p>
           
           <motion.div

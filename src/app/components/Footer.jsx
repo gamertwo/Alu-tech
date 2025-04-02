@@ -41,7 +41,7 @@ const Footer = () => {
     {
       title: "Products",
       links: [
-        { name: "Aluminium Extrusions", href: "#products" },
+        { name: "Aluminum Extrusions", href: "#products" },
         { name: "Sheets & Plates", href: "#products" },
         { name: "Castings", href: "#products" },
         { name: "Surface Treatments", href: "#products" },
@@ -96,10 +96,10 @@ const Footer = () => {
           {/* Company Info */}
           <motion.div variants={itemVariants}>
             <div className="text-2xl font-bold text-white mb-4">
-              <span className="text-white-500">White Gold</span> Aluminium
+              <span className="text-white-500">White Gold</span> Aluminum
             </div>
             <p className="mb-4">
-              Premium aluminium solutions for industrial and commercial applications worldwide.
+              Premium Aluminum solutions for industrial and commercial applications worldwide.
             </p>
             
             {/* Social Media Links */}
