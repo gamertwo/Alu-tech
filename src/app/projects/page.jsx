@@ -1,7 +1,7 @@
 // app/projects/page.jsx
 "use client";
 
-import { useState } from "react";
+import { useState, useMemo } from "react";
 import { motion } from "framer-motion";
 import Header from "../components/Header";
 import ProjectsHero from "./ProjectsHero";
@@ -10,58 +10,25 @@ import ProjectProcess from "./ProjectProcess";
 import Testimonials from "./Testimonials";
 import CallToAction from "./CallToAction";
 import Footer from "../components/Footer";
+
+// Import project data from a separate file for better organization
+import { projectsData } from "./data/projects";
+
 export default function Projects() {
   const [activeFilter, setActiveFilter] = useState("All");
+
+  const filters = useMemo(() => {
+    // Dynamically extract unique categories from projects data
+    const categories = [...new Set(projectsData.map(project => project.category))];
+    return ["All", ...categories];
+  }, []);
   
-  const filters = ["All", "Commercial", "Residential", "Solar"];
-  
-  const projects = [
-    {
-      id: 1,
-      title: "Apple Green Sialkot",
-      category: "Commercial",
-      image: "/projects/Apple green.jpg",
-      description: "Premium aluminum solutions for a modern commercial complex in Sialkot, featuring custom window profiles and door systems.",
-      completionDate: "2022",
-      location: "Sialkot",
-      highlights: ["Custom aluminum profiles", "Floor-to-ceiling window systems", "Energy-efficient design"]
-    },
-    {
-      id: 2,
-      title: "Gulburg Empire Center",
-      category: "Commercial",
-      image: "/projects/",
-      description: "Custom aluminum profiles and façade solutions for the Empire Center in Gulberg, creating a striking architectural statement.",
-      completionDate: "2023",
-      location: "Gulberg",
-      highlights: ["Aluminum curtain wall system", "Custom façade elements", "Sun shading solutions"]
-    },
-    {
-      id: 3,
-      title: "Sunlife Solar",
-      category: "Solar",
-      image: "/projects/",
-      description: "Aluminum channels and mounting systems for solar panel installations, optimized for efficiency and durability.",
-      completionDate: "2021",
-      location: "Multiple Locations",
-      highlights: ["Solar panel framing", "Mounting rails", "Weather-resistant finishes"]
-    },
-      {
-      id: 4,
-      title: "DHA Rehbar",
-      category: "Aluminum",
-      image: "/projects/",
-      description: "Custom aluminum profiles for large-scale installations, designed for maximum durability.",
-      completionDate: "2023",
-      location: "Punjab",
-      highlights: ["Industrial-grade aluminum channels", "Specialized connectors", "Corrosion-resistant treatment"]
-    }
-  ];
-  
-  // Filter projects based on active filter
-  const filteredProjects = activeFilter === "All" 
-    ? projects 
-    : projects.filter(project => project.category === activeFilter);
+  // Filter projects based on active filter - memoized for performance
+  const filteredProjects = useMemo(() => {
+    return activeFilter === "All" 
+      ? projectsData 
+      : projectsData.filter(project => project.category === activeFilter);
+  }, [activeFilter]);
   
   const fadeIn = {
     hidden: { opacity: 0, y: 20 },
@@ -112,14 +79,22 @@ export default function Projects() {
               ))}
             </div>
             
-            <ProjectsGrid projects={filteredProjects} />
+            {/* Display message if no projects match the current filter */}
+            {filteredProjects.length > 0 ? (
+              <ProjectsGrid projects={filteredProjects} />
+            ) : (
+              <div className="text-center py-16">
+                <p className="text-gray-500">No projects found for this category. Please try another filter.</p>
+              </div>
+            )}
             
             <CallToAction />
           </div>
         </section>
         
+        <ProjectProcess />
         <Testimonials />
-        <Footer/>
+        <Footer />
       </main>
     </>
   );
