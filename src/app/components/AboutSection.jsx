@@ -4,16 +4,14 @@
 import { useState } from "react";
 import { motion } from "framer-motion";
 import Image from "next/image";
-import { CheckCircle2, Award, Factory, Users, Globe, Building2 } from "lucide-react";
+import { CheckCircle2, Award, Factory, Users, Globe, Building2, X, Eye } from "lucide-react";
 
 const AboutSection = () => {
   const [hoveredIndex, setHoveredIndex] = useState(null);
+  const [showCertificate, setShowCertificate] = useState(false);
   
   const certifications = [
     { title: "ISO 9001:2015", subtitle: "Quality Management", icon: <CheckCircle2 className="h-5 w-5" /> },
-    { title: "ISO 14001:2015", subtitle: "Environmental Management", icon: <Globe className="h-5 w-5" /> },
-    { title: "OHSAS 18001", subtitle: "Occupational Health & Safety", icon: <Users className="h-5 w-5" /> },
-    { title: "ASI Certified", subtitle: "Aluminum Stewardship Initiative", icon: <Award className="h-5 w-5" /> }
   ];
   
   const stats = [
@@ -38,9 +36,13 @@ const AboutSection = () => {
           </span>
           <h2 className="text-3xl md:text-4xl font-bold text-gray-800 mb-4">About White Gold Aluminum</h2>
           <div className="w-24 h-1 bg-sky-500 mx-auto mb-6"></div>
-          <p className="max-w-2xl mx-auto text-gray-600">
-            A proud subsidiary of LLA Long Live Aluminum, pioneering excellence in Aluminum solutions with innovation, precision, and unwavering commitment to quality.
-          </p>
+          
+          {/* LLA Logo with Text */}
+          <div className="flex flex-col md:flex-row items-center justify-center gap-4 mb-4">
+            <p className="max-w-2xl text-gray-600">
+              A proud subsidiary of LLA Long Life Aluminum, pioneering excellence in Aluminum solutions with innovation, precision, and unwavering commitment to quality.
+            </p>
+          </div>
         </motion.div>
         
         {/* LLA Subsidiary Banner */}
@@ -52,9 +54,18 @@ const AboutSection = () => {
           viewport={{ once: true }}
         >
           <div className="flex flex-col md:flex-row items-center justify-center">
-            <div className="flex items-center mb-3 md:mb-0 md:mr-6">
-              <Building2 className="h-6 w-6 mr-2" />
-              <h3 className="text-xl font-semibold">Subsidiary of LLA Long Live Aluminum</h3>
+            <div className="bg-white rounded-lg shadow-sm p-2 flex items-center justify-center">
+              <Image 
+                src="/LLAlogo.png" 
+                alt="LLA Logo" 
+                width={40} 
+                height={40}
+                className="object-contain"
+              />
+            </div>
+            
+            <div className="flex items-center mb-3 md:mb-0 md:mr-6 pl-4">
+              <h3 className="text-xl font-semibold">Subsidiary of LLA Long Life Aluminum</h3>
             </div>
             <p className="text-center md:text-left">
               Leveraging the global strength and resources of our parent company to deliver exceptional quality.
@@ -73,35 +84,50 @@ const AboutSection = () => {
             <div>
               <h3 className="text-2xl font-semibold mb-4 text-gray-800">Excellence in Aluminum Since 1985</h3>
               <p className="text-gray-600 mb-6 leading-relaxed">
-                With over three decades of expertise, White Gold Aluminum has established itself as an industry leader in premium Aluminum solutions. As a key subsidiary of LLA Long Live Aluminum, we combine cutting-edge technology with exceptional craftsmanship to deliver superior products that exceed industry standards and client expectations.
+                With over three decades of expertise, White Gold Aluminum has established itself as an industry leader in premium Aluminum solutions. As a key subsidiary of LLA Long Life Aluminum, we combine cutting-edge technology with exceptional craftsmanship to deliver superior products that exceed industry standards and client expectations.
               </p>
               <p className="text-gray-600 mb-6 leading-relaxed">
                 Our state-of-the-art manufacturing facilities and dedicated team of professionals ensure consistent quality, innovation, and sustainability across all our operations, backed by the global expertise of LLA.
               </p>
             </div>
             
-            <div className="grid grid-cols-2 gap-4">
-              {certifications.map((cert, index) => (
-                <motion.div 
-                  key={index} 
-                  className="flex items-start p-4 bg-white rounded-lg shadow-sm border border-sky-100 hover:shadow-md transition-shadow duration-300"
-                  initial={{ opacity: 0, y: 20 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.4, delay: index * 0.1 }}
-                  viewport={{ once: true }}
-                  onMouseEnter={() => setHoveredIndex(index)}
-                  onMouseLeave={() => setHoveredIndex(null)}
-                >
-                  <div className={`mr-3 text-sky-600 transition-all duration-300 ${hoveredIndex === index ? 'scale-110' : ''}`}>
-                    {cert.icon}
+            {/* Enhanced Certificate Section */}
+            <motion.div 
+              className="bg-white rounded-lg shadow-md border border-sky-100 hover:shadow-lg transition-all duration-300 p-6"
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.4 }}
+              viewport={{ once: true }}
+              onMouseEnter={() => setHoveredIndex(0)}
+              onMouseLeave={() => setHoveredIndex(null)}
+            >
+              <div className="flex justify-between items-start mb-4">
+                <div className="flex items-start">
+                  <div className={`mr-3 text-sky-600 transition-all duration-300 ${hoveredIndex === 0 ? 'scale-110' : ''}`}>
+                    <CheckCircle2 className="h-6 w-6" />
                   </div>
                   <div>
-                    <h4 className="font-semibold text-gray-800">{cert.title}</h4>
-                    <p className="text-sm text-gray-600">{cert.subtitle}</p>
+                    <h4 className="font-semibold text-gray-800 text-lg">ISO 9001:2015</h4>
+                    <p className="text-gray-600">Quality Management System</p>
                   </div>
-                </motion.div>
-              ))}
-            </div>
+                </div>
+                <button 
+                  onClick={() => setShowCertificate(true)}
+                  className="flex items-center bg-sky-50 hover:bg-sky-100 text-sky-600 px-3 py-1.5 rounded-full text-sm font-medium transition-colors duration-300"
+                >
+                  <Eye className="h-4 w-4 mr-1" />
+                  View Certificate
+                </button>
+              </div>
+              
+              <div className="mt-4">
+                <p className="text-gray-600">Our ISO 9001:2015 certification demonstrates our commitment to consistent quality and customer satisfaction through continuous improvement and rigorous quality management processes.</p>
+                <div className="mt-4 flex justify-between items-center">
+                  <span className="text-sm text-gray-500">Certified since 2010</span>
+                  <span className="text-sm text-gray-500">Last audit: January 2024</span>
+                </div>
+              </div>
+            </motion.div>
           </motion.div>
           
           <div className="space-y-8">
@@ -155,12 +181,43 @@ const AboutSection = () => {
             <h3 className="text-xl font-semibold">Our Commitment to Excellence</h3>
           </div>
           <p className="max-w-3xl mx-auto">
-            As part of the LLA Long Live Aluminum family, White Gold Aluminum is committed to delivering superior Aluminum solutions through innovation, 
+            As part of the LLA Long Life Aluminum family, White Gold Aluminum is committed to delivering superior Aluminum solutions through innovation, 
             sustainability, and customer-focused approach. Our dedication to excellence is reflected in every 
             product we manufacture and every service we provide.
           </p>
         </motion.div>
       </div>
+
+      {/* Certificate Modal */}
+      {showCertificate && (
+        <div className="fixed inset-0 bg-black bg-opacity-70 flex items-center justify-center z-50 p-4">
+          <div className="bg-white rounded-lg shadow-2xl max-w-3xl w-full p-4 relative">
+            <button 
+              onClick={() => setShowCertificate(false)}
+              className="absolute right-4 top-4 bg-gray-100 hover:bg-gray-200 rounded-full p-1.5 text-gray-700 transition-colors duration-200"
+            >
+              <X className="h-5 w-5" />
+            </button>
+            <h3 className="text-xl font-semibold text-gray-800 mb-4">ISO 9001:2015 Certificate</h3>
+            <div className="relative h-[500px] w-full rounded overflow-hidden">
+              <Image 
+                src="/ISOcert.png" 
+                alt="ISO 9001:2015 Certificate" 
+                fill
+                className="object-contain"
+              />
+            </div>
+            <div className="mt-4 text-center">
+              <button 
+                onClick={() => setShowCertificate(false)}
+                className="bg-sky-600 hover:bg-sky-700 text-white px-6 py-2 rounded font-medium transition-colors duration-300"
+              >
+                Close
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
     </section>
   );
 };

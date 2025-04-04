@@ -3,6 +3,7 @@
 import { useState, lazy, useEffect } from "react";
 import Header from "@/app/components/Header";
 import HeroSection from "@/app/components/HeroSection";
+import LogoSection from "@/app/components/LogoSection"; // Import the LogoSection
 import LazyComponent from "@/app/components/LazyComponent";
 import useLazyLoad from "@/app/hooks/useLazyLoad";
 
@@ -79,6 +80,9 @@ export default function WhiteGoldAluminiumPage() {
       <main>
         {/* Hero loads immediately */}
         <HeroSection />
+        
+        {/* Logo section placed directly after hero - NOT lazy loaded for better UX */}
+        <LogoSection />
         
         {/* Each section loads completely independently */}
         <LazyComponent

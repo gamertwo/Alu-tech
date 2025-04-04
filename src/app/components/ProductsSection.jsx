@@ -14,8 +14,8 @@ const products = [
     description: "Custom and standard profiles for various applications with precise tolerances.",
     backContent: {
       details: [
-        { label: "Material Options", value: "6061, 6063, 7075 alloys" },
-        { label: "Applications", value: "Automotive, construction, electronics" },
+        { label: "Material Options", value: "Alloys" },
+        { label: "Applications", value: "Renewable energy, construction" },
         { label: "Key Benefits", value: "High strength, lightweight, corrosion-resistant" },
         { label: "Customization", value: "Tailored shapes, cutting, drilling, and coating" }
       ]
@@ -27,10 +27,10 @@ const products = [
     description: "High-quality flat-rolled products available in various alloys, tempers, and dimensions.",
     backContent: {
       details: [
-        { label: "Thickness Range", value: "0.5mm to 100mm" },
-        { label: "Available Alloys", value: "1100, 5052, 6061, 7075" },
-        { label: "Surface Finishes", value: "Mill finish, brushed, anodized" },
-        { label: "Common Uses", value: "Aerospace, marine, signage, roofing" }
+        { label: "Thickness Range", value: "0.9mm to 1.6mm" },
+        { label: "Available Alloys", value: "Alloys" },
+        { label: "Surface Finishes", value: "Anodized , Wood Color Design" },
+        { label: "Common Uses", value: "Construction, roofing" }
       ]
     }
   },
@@ -40,10 +40,10 @@ const products = [
     description: "Die-cast and sand-cast components with excellent surface finish and dimensional accuracy.",
     backContent: {
       details: [
-        { label: "Casting Methods", value: "Sand casting, die casting, investment casting" },
+        { label: "Casting Methods", value: "Die casting" },
         { label: "Key Features", value: "High precision, durable, heat-resistant" },
-        { label: "Industries Served", value: "Automotive, aerospace, machinery" },
-        { label: "Customization", value: "Complex geometries, tight tolerances, post-processing" }
+        { label: "Industries Served", value: "Construction, machinery"},
+        { label: "Customization", value: "Complex geometries" }
       ]
     }
   },
@@ -56,7 +56,7 @@ const products = [
         { label: "Anodizing", value: "Improves corrosion resistance & appearance" },
         { label: "Powder Coating", value: "Durable, weather-resistant, wide color options" },
         { label: "Polishing & Brushing", value: "Enhances aesthetic appeal" },
-        { label: "Applications", value: "Architectural, automotive, electronics" }
+        { label: "Applications", value: "Architectural, construction" }
       ]
     }
   },
@@ -66,9 +66,8 @@ const products = [
     description: "Precision machining services for complex Aluminum components with tight tolerances.",
     backContent: {
       details: [
-        { label: "Precision Tolerance", value: "±0.01mm" },
         { label: "Capabilities", value: "Milling, turning, drilling, tapping" },
-        { label: "Industries", value: "Medical, aerospace, industrial automation" },
+        { label: "Industries", value: "Construction , machinery" },
         { label: "Customization", value: "Prototype to large-scale production" }
       ]
     }
@@ -81,7 +80,7 @@ const products = [
       details: [
         { label: "Processes", value: "Bending, welding, cutting, forming" },
         { label: "Tailored Solutions", value: "Design assistance for unique applications" },
-        { label: "Industries", value: "Furniture, transportation, solar energy" },
+        { label: "Industries", value: "Construction, transportation, solar energy" },
         { label: "Finishing Options", value: "Powder coating, anodizing, polishing" }
       ]
     }
