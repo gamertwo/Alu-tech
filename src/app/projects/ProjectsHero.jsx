@@ -1,13 +1,29 @@
-// app/projects/ProjectsHero.jsx
 "use client";
 
 import { motion } from "framer-motion";
 import Image from "next/image";
+import { useRouter } from "next/navigation";
 
 const ProjectsHero = () => {
+  const router = useRouter();
+  
   const fadeIn = {
     hidden: { opacity: 0, y: 20 },
     visible: { opacity: 1, y: 0, transition: { duration: 0.6 } }
+  };
+
+  // Function to scroll down to projects section
+  const scrollToProjects = () => {
+    // Using window.scrollTo for smooth scrolling
+    window.scrollTo({
+      top: 500, // Scroll down 500px or adjust as needed
+      behavior: "smooth"
+    });
+  };
+
+  // Function to navigate to contact page
+  const goToContact = () => {
+    router.push("/contact");
   };
 
   return (
@@ -44,6 +60,7 @@ const ProjectsHero = () => {
               className="px-6 py-3 bg-white text-sky-700 font-medium rounded-md shadow-md hover:bg-sky-50 transition-all"
               whileHover={{ y: -2 }}
               whileTap={{ y: 0 }}
+              onClick={scrollToProjects}
             >
               View All Projects
             </motion.button>
@@ -51,6 +68,7 @@ const ProjectsHero = () => {
               className="px-6 py-3 bg-transparent border border-white text-white font-medium rounded-md hover:bg-white/10 transition-all"
               whileHover={{ y: -2 }}
               whileTap={{ y: 0 }}
+              onClick={goToContact}
             >
               Contact Sales Team
             </motion.button>

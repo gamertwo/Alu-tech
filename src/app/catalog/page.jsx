@@ -5,7 +5,7 @@ import { motion } from "framer-motion";
 import { Download, FileText, Book, HelpCircle, ArrowRight } from "lucide-react";
 import Header from "../components/Header";
 import Link from "next/link";
-
+import Footer from "../components/Footer";
 export default function Catalog() {
   // Path to your PDF catalog
   const pdfPath = "/Catalog Design.pdf";
@@ -220,6 +220,7 @@ export default function Catalog() {
           </div>
         </section>
       </main>
+      <Footer/>
     </>
   );
 }
