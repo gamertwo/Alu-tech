@@ -109,7 +109,7 @@ export default function PrivacyPolicy() {
                   <h2 className="text-2xl font-bold text-gray-800 mb-4">Changes to Our Privacy Policy</h2>
                   <div className="w-16 h-1 bg-sky-500 mb-4"></div>
                   <p className="text-gray-600 leading-relaxed">
-                    We may update our privacy policy from time to time. If we make material changes to how we treat our users' personal information, we will post the new privacy policy on this page with a notice that the privacy policy has been updated. The date the privacy policy was last revised will be identified at the top of the page. You are responsible for periodically visiting our website and this privacy policy to check for any changes.
+                    We may update our privacy policy from time to time. If we make material changes to how we treat our users personal information, we will post the new privacy policy on this page with a notice that the privacy policy has been updated. The date the privacy policy was last revised will be identified at the top of the page. You are responsible for periodically visiting our website and this privacy policy to check for any changes.
                   </p>
                 </div>
 
