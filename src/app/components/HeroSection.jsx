@@ -7,24 +7,7 @@ import Link from "next/link";
 import { ArrowRight } from "lucide-react";
 
 const HeroSection = () => {
-  // Typing animation state
-  const [text, setText] = useState("");
-  const [isTypingComplete, setIsTypingComplete] = useState(false);
   const [imageLoaded, setImageLoaded] = useState(false);
-  const fullText = "Innovating Aluminum for a Stronger Tomorrow";
-  
-  // Typing animation effect with optimized performance
-  useEffect(() => {
-    if (text.length < fullText.length) {
-      const typing = setTimeout(() => {
-        setText(fullText.slice(0, text.length + 1));
-      }, 20);
-      
-      return () => clearTimeout(typing);
-    } else {
-      setIsTypingComplete(true);
-    }
-  }, [text]);
   
   // Button hover animation
   const buttonVariants = {
@@ -49,7 +32,7 @@ const HeroSection = () => {
 
   // Notify parent when hero section is fully loaded
   useEffect(() => {
-    if (isTypingComplete && imageLoaded) {
+    if (imageLoaded) {
       // Dispatch a custom event that can be listened to by the parent component
       try {
         const event = new CustomEvent('heroLoaded');
@@ -58,7 +41,7 @@ const HeroSection = () => {
         console.error("Error dispatching heroLoaded event:", error);
       }
     }
-  }, [isTypingComplete, imageLoaded]);
+  }, [imageLoaded]);
 
   return (
     <section className="relative h-[500px] md:h-[600px] text-white overflow-hidden">
@@ -97,28 +80,28 @@ const HeroSection = () => {
             className="mb-6 inline-block"
           />
 
-          <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold mb-4 leading-tight">
-            {/* Text with cursor */}
-            <span>{text}</span>
-            <span className={`inline-block w-1 h-6 sm:h-8 ml-1 bg-blue-200 ${isTypingComplete ? 'animate-pulse' : ''}`}></span>
-            {/* Show the static highlighted text only after typing is complete */}
-            {isTypingComplete && (
-              <motion.span 
-                className="block text-blue-200 mt-2"
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1 }}
-                transition={{ duration: 0.5 }}
-              >
-                Precision. Quality. Innovation.
-              </motion.span>
-            )}
-          </h1>
+          <motion.h1 
+            className="text-3xl sm:text-4xl md:text-5xl font-bold mb-4 leading-tight"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ duration: 0.8, delay: 0.3 }}
+          >
+            Innovating Aluminum for a Stronger Tomorrow
+            <motion.span 
+              className="block text-blue-200 mt-2"
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ duration: 0.8, delay: 0.9 }}
+            >
+              Precision. Quality. Innovation.
+            </motion.span>
+          </motion.h1>
           
           <motion.p 
             className="text-lg sm:text-xl mb-6 md:mb-8 text-blue-50 max-w-xl"
             initial={{ opacity: 0 }}
-            animate={{ opacity: isTypingComplete ? 1 : 0 }}
-            transition={{ duration: 0.5, delay: 0.1 }}
+            animate={{ opacity: 1 }}
+            transition={{ duration: 0.8, delay: 0.6 }}
           >
             Premium Aluminum solutions for industrial and commercial needs with unmatched quality and precision.
           </motion.p>
@@ -126,8 +109,8 @@ const HeroSection = () => {
           <motion.div
             className="flex flex-col sm:flex-row sm:flex-wrap items-center gap-4 sm:gap-6"
             initial={{ opacity: 0 }}
-            animate={{ opacity: isTypingComplete ? 1 : 0 }}
-            transition={{ duration: 0.4 }}
+            animate={{ opacity: 1 }}
+            transition={{ duration: 0.8, delay: 0.9 }}
           >
             <motion.div
               variants={buttonVariants}

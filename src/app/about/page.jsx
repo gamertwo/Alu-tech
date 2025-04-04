@@ -1,16 +1,23 @@
 // app/about/page.jsx
 "use client";
 
-import { motion } from "framer-motion";
+import { useState } from "react";
+import { motion, AnimatePresence } from "framer-motion";
 import Image from "next/image";
-import { CheckCircle2, Award, Clock, Users } from "lucide-react";
+import { CheckCircle2, Award, Clock, Users, User, X, ExternalLink } from "lucide-react";
 import Header from "../components/Header";
-import Footer from "../components/Footer"
+import Footer from "../components/Footer";
+
 export default function AboutUs() {
+  const [isModalOpen, setIsModalOpen] = useState(false);
+
   const fadeIn = {
     hidden: { opacity: 0, y: 20 },
     visible: { opacity: 1, y: 0, transition: { duration: 0.6 } }
   };
+
+  const openModal = () => setIsModalOpen(true);
+  const closeModal = () => setIsModalOpen(false);
 
   return (
     <>
@@ -36,7 +43,7 @@ export default function AboutUs() {
             >
               <h1 className="text-4xl md:text-5xl font-bold mb-4">About White Gold Aluminum</h1>
               <p className="text-xl text-sky-100">
-                A legacy of excellence in aluminum manufacturing since 2008
+                A legacy of excellence in aluminum manufacturing since 2002
               </p>
             </motion.div>
           </div>
@@ -59,7 +66,7 @@ export default function AboutUs() {
                 <h2 className="text-3xl md:text-4xl font-bold text-gray-800">A Rich Heritage of Manufacturing Excellence</h2>
                 <div className="w-24 h-1 bg-sky-500"></div>
                 <p className="text-gray-600 leading-relaxed">
-                  White Gold Aluminum was founded in 2008 by Mr. Rizwan Habib, continuing a family legacy in manufacturing that spans over 90 years. Our journey began in 1935 when Haji Muhammad Abdullah, the grandfather of our current CEO, started manufacturing wood products.
+                  White Gold Aluminum was founded in 2002 by Mr. Rizwan Habib, continuing a family legacy in manufacturing that spans over 90 years. Our journey began in 1935 when Haji Muhammad Abdullah, the grandfather of our current CEO, started manufacturing wood products.
                 </p>
                 <p className="text-gray-600 leading-relaxed">
                   The tradition continued with Habib Ullah, the third child of Haji Abdullah, who expanded into lathe machines, rubber, aluminum, and steel products by founding Jojo Traders in 1973. Today, under the leadership of Rizwan Habib, White Gold Aluminum has been producing premium aluminum products for 23 years.
@@ -74,7 +81,7 @@ export default function AboutUs() {
                 className="relative h-[400px] rounded-lg overflow-hidden shadow-xl"
               >
                 <Image 
-                  src="/company-history.png" 
+                  src="/aluminium-factory.png" 
                   alt="Company History" 
                   fill 
                   style={{objectFit: "cover"}}
@@ -114,20 +121,14 @@ export default function AboutUs() {
                 variants={fadeIn}
                 className="bg-sky-50 rounded-lg p-8 flex flex-col md:flex-row items-center md:items-start gap-6"
               >
-                <div className="w-32 h-32 rounded-full overflow-hidden flex-shrink-0 border-4 border-white shadow-lg">
-                  <Image 
-                    src="/ceo-placeholder.png" 
-                    alt="CEO Portrait" 
-                    width={128}
-                    height={128}
-                    style={{objectFit: "cover"}}
-                  />
+                <div className="w-32 h-32 rounded-full overflow-hidden flex-shrink-0 border-4 border-white shadow-lg bg-sky-200 flex items-center justify-center">
+                  <User size={64} className="text-sky-600" />
                 </div>
                 <div>
                   <h3 className="text-2xl font-bold text-gray-800 mb-1">Mr. Rizwan Habib</h3>
                   <p className="text-sky-600 font-medium mb-4">Chief Executive Officer</p>
                   <p className="text-gray-600">
-                    Leading White Gold Aluminum with vision and expertise since founding the company in 2008.
+                    Leading White Gold Aluminum with vision and expertise since founding the company in 2002.
                     Continuing a family legacy of manufacturing excellence into the third generation.
                   </p>
                 </div>
@@ -140,14 +141,8 @@ export default function AboutUs() {
                 variants={fadeIn}
                 className="bg-sky-50 rounded-lg p-8 flex flex-col md:flex-row items-center md:items-start gap-6"
               >
-                <div className="w-32 h-32 rounded-full overflow-hidden flex-shrink-0 border-4 border-white shadow-lg">
-                  <Image 
-                    src="/coo-placeholder.png" 
-                    alt="COO Portrait" 
-                    width={128}
-                    height={128}
-                    style={{objectFit: "cover"}}
-                  />
+                <div className="w-32 h-32 rounded-full overflow-hidden flex-shrink-0 border-4 border-white shadow-lg bg-sky-200 flex items-center justify-center">
+                  <User size={64} className="text-sky-600" />
                 </div>
                 <div>
                   <h3 className="text-2xl font-bold text-gray-800 mb-1">Osama Saeed Sandhu</h3>
@@ -242,13 +237,25 @@ export default function AboutUs() {
                     <Award className="h-8 w-8 text-sky-600 mr-3" />
                     <h3 className="text-xl font-semibold text-gray-800">Industry Certifications</h3>
                   </div>
-                  <div className="grid grid-cols-2 gap-4">
-                    <div className="bg-sky-50 p-4 rounded-lg text-center">
-                      <p className="font-semibold text-sky-700">ISO</p>
+                  <div className="bg-sky-50 p-6 rounded-lg text-center shadow-sm hover:shadow-md transition-shadow duration-300 cursor-pointer" onClick={openModal}>
+                    <div className="mb-4 flex justify-center">
+                      <Image 
+                        src="/ISOcert.png" 
+                        alt="ISO Certificate Thumbnail" 
+                        width={80}
+                        height={80}
+                        style={{objectFit: "contain"}}
+                        className="opacity-70"
+                      />
                     </div>
-                    <div className="bg-sky-50 p-4 rounded-lg text-center">
-                      <p className="font-semibold text-sky-700">CNW</p>
-                    </div>
+                    <p className="font-semibold text-sky-700 mb-3">ISO Certification</p>
+                    <button 
+                      className="flex items-center mx-auto gap-2 bg-sky-600 hover:bg-sky-700 text-white px-4 py-2 rounded-md transition-colors duration-300"
+                      onClick={openModal}
+                    >
+                      <ExternalLink size={16} />
+                      <span>View Certificate</span>
+                    </button>
                   </div>
                 </div>
                 
@@ -339,7 +346,7 @@ export default function AboutUs() {
                     For inquiries, please contact our sales team:
                   </p>
                   <p className="text-sky-700 font-medium">
-                    WhatsApp: 0324 4054632
+                    WhatsApp: +92 324 4054632
                   </p>
                 </div>
               </motion.div>
@@ -348,6 +355,57 @@ export default function AboutUs() {
         </section>
         <Footer/>
       </main>
+
+      {/* Certificate Modal */}
+      <AnimatePresence>
+        {isModalOpen && (
+          <motion.div 
+            className="fixed inset-0 bg-black bg-opacity-75 flex items-center justify-center z-50 p-4"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            onClick={closeModal}
+          >
+            <motion.div 
+              className="bg-white rounded-lg overflow-hidden max-w-3xl w-full max-h-[90vh] relative"
+              initial={{ scale: 0.9, opacity: 0 }}
+              animate={{ scale: 1, opacity: 1 }}
+              exit={{ scale: 0.9, opacity: 0 }}
+              onClick={(e) => e.stopPropagation()}
+            >
+              <div className="p-4 bg-sky-600 text-white flex justify-between items-center">
+                <h3 className="text-xl font-semibold">ISO Certification</h3>
+                <button 
+                  className="text-white hover:text-sky-100"
+                  onClick={closeModal}
+                >
+                  <X size={24} />
+                </button>
+              </div>
+              <div className="p-6 overflow-auto max-h-[calc(90vh-80px)]">
+                <div className="flex justify-center">
+                  <div className="relative h-[60vh] w-full">
+                    <Image 
+                      src="/ISOcert.png" 
+                      alt="ISO Certificate" 
+                      fill
+                      style={{objectFit: "contain"}}
+                    />
+                  </div>
+                </div>
+              </div>
+              <div className="p-4 bg-gray-50 border-t border-gray-200 flex justify-end">
+                <button 
+                  className="bg-sky-600 hover:bg-sky-700 text-white px-6 py-2 rounded-md transition-colors duration-300"
+                  onClick={closeModal}
+                >
+                  Close
+                </button>
+              </div>
+            </motion.div>
+          </motion.div>
+        )}
+      </AnimatePresence>
     </>
   );
 }

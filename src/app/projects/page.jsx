@@ -31,9 +31,9 @@ export default function Projects() {
       title: "Gulburg Empire Center",
       category: "Commercial",
       image: "/projects/",
-      description: "Custom aluminum profiles and façade solutions for the Empire Center in DHA Rehbar, creating a striking architectural statement.",
+      description: "Custom aluminum profiles and façade solutions for the Empire Center in Gulberg, creating a striking architectural statement.",
       completionDate: "2023",
-      location: "DHA Rehbar",
+      location: "Gulberg",
       highlights: ["Aluminum curtain wall system", "Custom façade elements", "Sun shading solutions"]
     },
     {
@@ -46,35 +46,15 @@ export default function Projects() {
       location: "Multiple Locations",
       highlights: ["Solar panel framing", "Mounting rails", "Weather-resistant finishes"]
     },
-    {
+      {
       id: 4,
-      title: "AM Solar",
-      category: "Solar",
+      title: "DHA Rehbar",
+      category: "Aluminum",
       image: "/projects/",
-      description: "Custom aluminum profiles for large-scale solar power installations across Punjab, designed for maximum durability.",
+      description: "Custom aluminum profiles for large-scale installations, designed for maximum durability.",
       completionDate: "2023",
       location: "Punjab",
       highlights: ["Industrial-grade aluminum channels", "Specialized connectors", "Corrosion-resistant treatment"]
-    },
-    {
-      id: 5,
-      title: "Modern Residences",
-      category: "Residential",
-      image: "/projects/",
-      description: "Aluminum window and door systems for luxury residential projects, combining aesthetics with functionality.",
-      completionDate: "2022",
-      location: "Lahore",
-      highlights: ["Sliding door systems", "Casement windows", "Thermal break technology"]
-    },
-    {
-      id: 6,
-      title: "Green Energy Complex",
-      category: "Solar",
-      image: "/projects/",
-      description: "Comprehensive aluminum framing solutions for a major solar energy development project.",
-      completionDate: "2023",
-      location: "Islamabad",
-      highlights: ["Custom extrusions", "Load-bearing structures", "Environmental certification"]
     }
   ];
   
