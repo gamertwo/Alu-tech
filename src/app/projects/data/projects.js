@@ -55,7 +55,7 @@ export const projectsData = [
     },
     {
       id: 5,
-      title: "Modern Residences",
+      title: "DHA Rehbar",
       category: "Residential",
       image: "/projects/modern-residences.jpg",
       description: "Aluminum window and door systems for luxury residential projects, combining aesthetics with functionality.",
@@ -66,17 +66,5 @@ export const projectsData = [
       projectValue: "$600K - $800K",
       projectDuration: "7 months",
     },
-    {
-      id: 6,
-      title: "Green Energy Complex",
-      category: "Solar",
-      image: "/projects/green-energy.jpg",
-      description: "Comprehensive aluminum framing solutions for a major solar energy development project.",
-      completionDate: "2023",
-      location: "Islamabad",
-      highlights: ["Custom extrusions", "Load-bearing structures", "Environmental certification"],
-      clientName: "Green Pakistan Initiative",
-      projectValue: "$2.2M - $2.5M",
-      projectDuration: "14 months",
-    }
+  
   ];

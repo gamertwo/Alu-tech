@@ -14,19 +14,25 @@ const ProjectDetailsModal = ({ isOpen, onClose, project }) => {
   // Generate gallery images when project changes
   useEffect(() => {
     if (project) {
-      // Create gallery array with main image and variations
-      const baseTitle = project.title?.toLowerCase().replace(/\s+/g, '-') || '';
-      const imagePath = project.image || '/projects/placeholder.jpg';
+      // Format project title for file naming convention
+      const formattedTitle = project.title?.toLowerCase().replace(/\s+/g, '-') || 'placeholder';
       
-      // Use a mix of actual images and placeholders for demonstration
-      setGalleryImages([
-        { src: imagePath, alt: `${project.title} - Main view` },
-        { src: `/api/placeholder/800/600?text=${baseTitle}-1`, alt: `${project.title} - Detail 1` },
-        { src: `/api/placeholder/800/600?text=${baseTitle}-2`, alt: `${project.title} - Detail 2` },
-        { src: `/api/placeholder/800/600?text=${baseTitle}-3`, alt: `${project.title} - Interior` },
-        { src: `/api/placeholder/800/600?text=${baseTitle}-4`, alt: `${project.title} - Exterior` },
-        { src: `/api/placeholder/800/600?text=${baseTitle}-5`, alt: `${project.title} - Closeup` }
-      ]);
+      // Create gallery array with different views
+      const viewTypes = [
+        { suffix: 'closeup', alt: 'Close-up View' },
+        { suffix: 'detail-1', alt: 'Detail View 1' },
+        { suffix: 'detail-2', alt: 'Detail View 2' },
+        { suffix: 'exterior', alt: 'Exterior View' },
+        { suffix: 'interior', alt: 'Interior View' }
+      ];
+      
+      // Build the gallery images array with the dynamic paths
+      const images = viewTypes.map(view => ({
+        src: `/projects/${formattedTitle}-${view.suffix}.jpg`,
+        alt: `${project.title} - ${view.alt}`
+      }));
+      
+      setGalleryImages(images);
     }
   }, [project]);
 
@@ -196,7 +202,7 @@ const ProjectDetailsModal = ({ isOpen, onClose, project }) => {
                 {/* Image Section */}
                 <div className="md:w-2/5 relative h-64 md:h-auto bg-sky-50">
                   <Image
-                    src={project.image || "/api/placeholder/800/600"}
+                    src={galleryImages[0]?.src || "/api/placeholder/800/600"}
                     alt={project.title || "Project image"}
                     fill
                     style={{ objectFit: "cover" }}

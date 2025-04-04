@@ -8,10 +8,15 @@ import {
   Mail, 
   Send, 
   CheckCircle, 
-  AlertCircle 
+  AlertCircle,
+  Clock,
+  Building
 } from 'lucide-react';
 import Link from 'next/link';
+import { motion } from "framer-motion";
 import Header from '@/app/components/Header';
+import Footer from '@/app/components/Footer';
+
 export default function ContactPage() {
   const [formData, setFormData] = useState({
     name: '',
@@ -82,6 +87,11 @@ export default function ContactPage() {
     }
   };
 
+  const fadeIn = {
+    hidden: { opacity: 0, y: 20 },
+    visible: { opacity: 1, y: 0, transition: { duration: 0.6 } }
+  };
+
   return (
     <div className="bg-gray-50 min-h-screen">
       <Header/>
@@ -126,7 +136,7 @@ export default function ContactPage() {
                     </div>
                     <div>
                       <h3 className="font-medium text-gray-800">Phone</h3>
-                      <p className="text-gray-600 mt-1">+92324 40546327</p>
+                      <p className="text-gray-600 mt-1">+92 324 4054632</p>
                     </div>
                   </div>
 
@@ -138,6 +148,34 @@ export default function ContactPage() {
                       <h3 className="font-medium text-gray-800">Email</h3>
                       <p className="text-gray-600 mt-1">info@whitegoldaluminum.com</p>
                     </div>
+                  </div>
+                </div>
+              </div>
+              
+              {/* Business Hours Box */}
+              <div className="bg-white p-8 rounded-lg shadow-md border border-gray-100">
+                <h2 className="text-2xl font-semibold text-gray-800 mb-6">Business Hours</h2>
+                <div className="space-y-4">
+                  <div className="flex justify-between items-center border-b border-gray-100 pb-3">
+                    <div className="flex items-center">
+                      <Clock className="h-5 w-5 text-sky-600 mr-2" />
+                      <span className="text-gray-800 font-medium">Office Hours</span>
+                    </div>
+                    <span className="text-sky-600 font-medium">9:00 AM - 6:00 PM</span>
+                  </div>
+                  
+                  <div className="flex justify-between items-center">
+                    <div className="flex items-center">
+                      <Building className="h-5 w-5 text-sky-600 mr-2" />
+                      <span className="text-gray-800 font-medium">Factory Hours</span>
+                    </div>
+                    <span className="text-sky-600 font-medium">9:00 AM - 6:00 PM</span>
+                  </div>
+                  
+                  <div className="pt-4 mt-4 border-t border-gray-100">
+                    <p className="text-gray-600 text-sm">
+                      Our factory operates 9:00 AM - 6:00 PM to meet production demands while our office is open Monday through Saturday.
+                    </p>
                   </div>
                 </div>
               </div>
@@ -288,6 +326,64 @@ export default function ContactPage() {
           </div>
         </div>
       </section>
+
+      {/* Location & Map Section */}
+      <section className="py-16 bg-white">
+        <div className="container mx-auto px-4">
+          <motion.div 
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true }}
+            variants={fadeIn}
+            className="text-center mb-12"
+          >
+            <span className="inline-block px-4 py-1 rounded-full bg-sky-100 text-sky-600 text-sm font-medium mb-4">
+              Visit Us
+            </span>
+            <h2 className="text-3xl md:text-4xl font-bold text-gray-800 mb-4">Our Location</h2>
+            <div className="w-24 h-1 bg-sky-500 mx-auto mb-6"></div>
+          </motion.div>
+          
+          <motion.div 
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true }}
+            variants={fadeIn}
+            className="bg-white shadow-lg rounded-lg overflow-hidden"
+          >
+            <div className="h-[400px] bg-gray-200">
+              <iframe 
+                src="https://www.google.com/maps/embed?pb=!1m17!1m12!1m3!1d3406.303283044412!2d74.29094307560587!3d31.378199974279397!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m2!1m1!2zMzHCsDIyJzQxLjUiTiA3NMKwMTcnMzYuNyJF!5e0!3m2!1sen!2s!4v1743782388034!5m2!1sen!2s" 
+                width="100%" 
+                height="100%" 
+                style={{border:0}} 
+                allowFullScreen="" 
+                loading="lazy" 
+                referrerPolicy="no-referrer-when-downgrade">
+              </iframe>
+            </div>
+            <div className="p-6">
+              <h3 className="text-xl font-semibold text-gray-800 mb-2">Manufacturing Facility</h3>
+              <p className="text-gray-600">
+                <strong>Address:</strong> Racecourse road near Halloki railway station, Lahore, Pakistan
+              </p>
+              <div className="mt-4 flex flex-wrap gap-4">
+                <div className="flex items-center">
+                  <Clock className="h-5 w-5 text-sky-600 mr-2" />
+                  <span className="text-gray-700"><strong>Office Hours:</strong> 9:00 AM - 6:00 PM</span>
+                </div>
+                <div className="flex items-center">
+                  <Building className="h-5 w-5 text-sky-600 mr-2" />
+                  <span className="text-gray-700"><strong>Factory Hours:</strong> 9:00 AM - 6:00 PM</span>
+                </div>
+              </div>
+            </div>
+          </motion.div>
+        </div>
+      </section>
+
+      {/* Footer Component */}
+      <Footer />
     </div>
   );
 }

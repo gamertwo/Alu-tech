@@ -290,7 +290,7 @@ export default function AboutUs() {
                   </div>
                 </motion.div>
                 
-               
+             
               </motion.div>
             </div>
           </div>
@@ -326,10 +326,15 @@ export default function AboutUs() {
                   <strong>Address:</strong> Racecourse road near Halloki railway station
                 </p>
                 <div className="h-64 bg-gray-200 rounded-lg overflow-hidden">
-                  {/* You can replace this with an actual map */}
-                  <div className="w-full h-full flex items-center justify-center">
-                    <p className="text-gray-500">Map Placeholder</p>
-                  </div>
+                  <iframe 
+                    src="https://www.google.com/maps/embed?pb=!1m17!1m12!1m3!1d3406.303283044412!2d74.29094307560587!3d31.378199974279397!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m2!1m1!2zMzHCsDIyJzQxLjUiTiA3NMKwMTcnMzYuNyJF!5e0!3m2!1sen!2s!4v1743782388034!5m2!1sen!2s" 
+                    width="100%" 
+                    height="100%" 
+                    style={{border:0}} 
+                    allowFullScreen="" 
+                    loading="lazy" 
+                    referrerPolicy="no-referrer-when-downgrade">
+                  </iframe>
                 </div>
               </motion.div>
               
