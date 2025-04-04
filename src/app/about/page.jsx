@@ -7,6 +7,7 @@ import Image from "next/image";
 import { CheckCircle2, Award, Clock, Users, User, X, ExternalLink } from "lucide-react";
 import Header from "../components/Header";
 import Footer from "../components/Footer";
+import LogoSection from "../components/LogoSection";
 
 export default function AboutUs() {
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -43,11 +44,14 @@ export default function AboutUs() {
             >
               <h1 className="text-4xl md:text-5xl font-bold mb-4">About White Gold Aluminum</h1>
               <p className="text-xl text-sky-100">
-                A legacy of excellence in aluminum manufacturing since 2002
+                A legacy of excellence in aluminum manufacturing since 2008
               </p>
             </motion.div>
           </div>
         </section>
+
+        {/* Integrated Logo Section */}
+        <LogoSection />
 
         {/* Company Overview */}
         <section className="py-16 md:py-24">
@@ -66,7 +70,7 @@ export default function AboutUs() {
                 <h2 className="text-3xl md:text-4xl font-bold text-gray-800">A Rich Heritage of Manufacturing Excellence</h2>
                 <div className="w-24 h-1 bg-sky-500"></div>
                 <p className="text-gray-600 leading-relaxed">
-                  White Gold Aluminum was founded in 2002 by Mr. Rizwan Habib, continuing a family legacy in manufacturing that spans over 90 years. Our journey began in 1935 when Haji Muhammad Abdullah, the grandfather of our current CEO, started manufacturing wood products.
+                  White Gold Aluminum was founded in 2008 by Mr. Rizwan Habib, continuing a family legacy in manufacturing that spans over 90 years. Our journey began in 1935 when Haji Muhammad Abdullah, the grandfather of our current CEO, started manufacturing wood products.
                 </p>
                 <p className="text-gray-600 leading-relaxed">
                   The tradition continued with Habib Ullah, the third child of Haji Abdullah, who expanded into lathe machines, rubber, aluminum, and steel products by founding Jojo Traders in 1973. Today, under the leadership of Rizwan Habib, White Gold Aluminum has been producing premium aluminum products for 23 years.
@@ -128,7 +132,7 @@ export default function AboutUs() {
                   <h3 className="text-2xl font-bold text-gray-800 mb-1">Mr. Rizwan Habib</h3>
                   <p className="text-sky-600 font-medium mb-4">Chief Executive Officer</p>
                   <p className="text-gray-600">
-                    Leading White Gold Aluminum with vision and expertise since founding the company in 2002.
+                    Leading White Gold Aluminum with vision and expertise since founding the company in 2008.
                     Continuing a family legacy of manufacturing excellence into the third generation.
                   </p>
                 </div>
@@ -259,15 +263,34 @@ export default function AboutUs() {
                   </div>
                 </div>
                 
-                <div className="bg-white p-6 rounded-lg shadow-md border border-sky-100">
-                  <div className="flex items-center mb-4">
-                    <Award className="h-8 w-8 text-sky-600 mr-3" />
-                    <h3 className="text-xl font-semibold text-gray-800">Manufacturing Excellence</h3>
+                {/* LLA Subsidiary Banner */}
+                <motion.div 
+                  className="mb-8 p-4 bg-gradient-to-r from-sky-500 to-blue-600 rounded-lg shadow-lg text-white"
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.6 }}
+                  viewport={{ once: true }}
+                >
+                  <div className="flex flex-col md:flex-row items-center justify-center">
+                    <div className="bg-white rounded-lg shadow-sm p-2 flex items-center justify-center">
+                      <Image 
+                        src="/LLAlogo.png" 
+                        alt="LLA Logo" 
+                        width={40} 
+                        height={40}
+                        className="object-contain"
+                      />
+                    </div>
+                    
+                    <div className="flex items-center mb-3 md:mb-0 md:mr-6 pl-4">
+                      <h3 className="text-xl font-semibold">Subsidiary of LLA Long Life Aluminum</h3>
+                    </div>
+                    <p className="text-center md:text-left">
+                    </p>
                   </div>
-                  <p className="text-gray-600 mb-4">
-                    We receive aluminum raw material in the form of electrical wires. The material is melted in a furnace where magnesium and silicon are added to harden it. Billets are then created and processed through a hydraulic press at high temperature. Finally, the aluminum is buffered and colored according to client specifications.
-                  </p>
-                </div>
+                </motion.div>
+                
+               
               </motion.div>
             </div>
           </div>
