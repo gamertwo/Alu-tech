@@ -9,7 +9,7 @@ import ProjectsGrid from "./ProjectsGrid";
 import ProjectProcess from "./ProjectProcess";
 import Testimonials from "./Testimonials";
 import CallToAction from "./CallToAction";
-
+import Footer from "../components/Footer";
 export default function Projects() {
   const [activeFilter, setActiveFilter] = useState("All");
   
@@ -138,8 +138,8 @@ export default function Projects() {
           </div>
         </section>
         
-        <ProjectProcess />
         <Testimonials />
+        <Footer/>
       </main>
     </>
   );

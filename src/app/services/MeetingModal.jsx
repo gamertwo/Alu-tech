@@ -182,6 +182,9 @@ const MeetingModal = ({ isOpen, onClose, product }) => {
   
   if (!product) return null;
   
+  // Safely access product details from the new structure
+  const productDetails = product?.backContent?.details || [];
+  
   return (
     <AnimatePresence>
       {isOpen && (
@@ -236,7 +239,8 @@ const MeetingModal = ({ isOpen, onClose, product }) => {
                   <div className="space-y-3">
                     <h5 className="font-medium text-gray-700">Key Features:</h5>
                     <ul className="list-disc pl-5 text-gray-600 space-y-1">
-                      {product.details.slice(0, 3).map((detail, idx) => (
+                      {/* Updated to use the new structure */}
+                      {productDetails.slice(0, 3).map((detail, idx) => (
                         <li key={idx}><span className="font-medium">{detail.label}:</span> {detail.value}</li>
                       ))}
                     </ul>

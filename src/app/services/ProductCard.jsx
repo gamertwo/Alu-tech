@@ -73,16 +73,7 @@ const HorizontalProductCard = ({ product, index }) => {
           
           {/* Right side - Content */}
           <div className="p-6 md:w-3/5 flex flex-col">
-            {/* Product Rating */}
-            <div className="flex items-center mb-2">
-              {[...Array(5)].map((_, i) => (
-                <Star 
-                  key={i} 
-                  className={`h-4 w-4 ${i < product.rating ? 'text-amber-400 fill-amber-400' : 'text-gray-300'}`} 
-                />
-              ))}
-              <span className="text-xs text-gray-500 ml-2">({product.reviews} reviews)</span>
-            </div>
+          
             
             <h3 className="text-xl font-bold mb-3 text-gray-800">
               {product.title}
@@ -101,15 +92,10 @@ const HorizontalProductCard = ({ product, index }) => {
                 aria-label={`Schedule meeting for ${product.title}`}
               >
                 <Calendar className="h-4 w-4 mr-2" />
-                Schedule Meeting
+                Get a Quote
               </motion.button>
               
-              <a 
-                href="#" 
-                className="text-blue-600 hover:text-blue-800 font-medium text-sm underline-offset-2 hover:underline flex justify-center xs:justify-start"
-              >
-                Learn More
-              </a>
+          
             </div>
           </div>
         </div>

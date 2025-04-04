@@ -36,7 +36,7 @@ export default function AboutUs() {
             >
               <h1 className="text-4xl md:text-5xl font-bold mb-4">About White Gold Aluminum</h1>
               <p className="text-xl text-sky-100">
-                A legacy of excellence in aluminum manufacturing since 2002
+                A legacy of excellence in aluminum manufacturing since 2008
               </p>
             </motion.div>
           </div>
@@ -59,7 +59,7 @@ export default function AboutUs() {
                 <h2 className="text-3xl md:text-4xl font-bold text-gray-800">A Rich Heritage of Manufacturing Excellence</h2>
                 <div className="w-24 h-1 bg-sky-500"></div>
                 <p className="text-gray-600 leading-relaxed">
-                  White Gold Aluminum was founded in 2002 by Mr. Rizwan Habib, continuing a family legacy in manufacturing that spans over 90 years. Our journey began in 1935 when Haji Muhammad Abdullah, the grandfather of our current CEO, started manufacturing wood products.
+                  White Gold Aluminum was founded in 2008 by Mr. Rizwan Habib, continuing a family legacy in manufacturing that spans over 90 years. Our journey began in 1935 when Haji Muhammad Abdullah, the grandfather of our current CEO, started manufacturing wood products.
                 </p>
                 <p className="text-gray-600 leading-relaxed">
                   The tradition continued with Habib Ullah, the third child of Haji Abdullah, who expanded into lathe machines, rubber, aluminum, and steel products by founding Jojo Traders in 1973. Today, under the leadership of Rizwan Habib, White Gold Aluminum has been producing premium aluminum products for 23 years.
@@ -127,7 +127,7 @@ export default function AboutUs() {
                   <h3 className="text-2xl font-bold text-gray-800 mb-1">Mr. Rizwan Habib</h3>
                   <p className="text-sky-600 font-medium mb-4">Chief Executive Officer</p>
                   <p className="text-gray-600">
-                    Leading White Gold Aluminum with vision and expertise since founding the company in 2002.
+                    Leading White Gold Aluminum with vision and expertise since founding the company in 2008.
                     Continuing a family legacy of manufacturing excellence into the third generation.
                   </p>
                 </div>

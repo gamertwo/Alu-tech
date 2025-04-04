@@ -41,7 +41,7 @@ const ProductOverview = () => {
     <div className="bg-gray-50">
       {/* Page Header with title, subtitle and intro */}
       <PageHeader 
-        title="Premium Aluminum Products"
+        title="Premium Aluminum Services"
         subtitle="Engineered Excellence"
         description="Discover our comprehensive range of high-quality aluminum products designed for superior performance, durability, and versatility across various industries."
       />

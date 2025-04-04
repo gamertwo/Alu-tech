@@ -17,8 +17,8 @@ const AboutSection = () => {
   const stats = [
     { value: "35+", label: "Years of Excellence" },
     { value: "500+", label: "Projects Completed" },
-    { value: "98%", label: "Client Satisfaction" },
-    { value: "20+", label: "Countries Served" }
+    // { value: "98%", label: "Client Satisfaction" },
+    // { value: "20+", label: "Countries Served" }
   ];
 
   return (

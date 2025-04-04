@@ -6,7 +6,8 @@ import ProductOverview from './ProductOverview';
 import Header from '../components/Header';
 import Footer from '../components/Footer';
 import Loading from './Loading';
-
+import Testimonials from '../projects/Testimonials';
+import ProjectProcess from '../projects/ProjectProcess';
 // This will be used by Next.js static generation
 
 export default function Products() {
@@ -58,6 +59,8 @@ export default function Products() {
       {isLoading && <Loading />}
       <Header />
       {isReady && <ProductOverview />}
+      <ProjectProcess/>
+      <Testimonials/>
       <Footer />
     </main>
   );
