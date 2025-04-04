@@ -199,7 +199,7 @@ const ContactSection = ({ formData: externalFormData, handleInputChange: externa
                     </div>
                     <div>
                       <h4 className="font-semibold text-gray-800 text-sm md:text-base">Phone</h4>
-                      <p className="text-gray-600 text-xs md:text-sm">+92324 40546327</p>
+                      <p className="text-gray-600 text-xs md:text-sm">+92 324 40546327</p>
                     </div>
                   </div>
                   <div className="flex items-start">
@@ -225,11 +225,11 @@ const ContactSection = ({ formData: externalFormData, handleInputChange: externa
                 <div className="space-y-2">
                   <div className="flex justify-between">
                     <span className="text-gray-600 text-xs md:text-sm">Monday - Friday:</span>
-                    <span className="text-gray-800 font-medium text-xs md:text-sm">8:00 AM - 6:00 PM</span>
+                    <span className="text-gray-800 font-medium text-xs md:text-sm">9:00 AM - 6:00 PM</span>
                   </div>
                   <div className="flex justify-between">
                     <span className="text-gray-600 text-xs md:text-sm">Saturday:</span>
-                    <span className="text-gray-800 font-medium text-xs md:text-sm">9:00 AM - 1:00 PM</span>
+                    <span className="text-gray-800 font-medium text-xs md:text-sm">9:00 AM - 6:00 PM</span>
                   </div>
                   <div className="flex justify-between">
                     <span className="text-gray-600 text-xs md:text-sm">Sunday:</span>

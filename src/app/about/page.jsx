@@ -328,7 +328,7 @@ export default function AboutUs() {
                       <p className="text-gray-600">Production operations</p>
                     </div>
                     <div className="bg-white px-4 py-2 rounded-full shadow-sm">
-                      <p className="text-sky-700 font-medium">24/7 Operation</p>
+                      <p className="text-sky-700 font-medium">9:00 AM - 6:00 PM</p>
                     </div>
                   </div>
                 </div>
