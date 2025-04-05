@@ -163,7 +163,7 @@ export default function Catalog() {
                       Our team is available to help you find the right aluminium solutions for your project.
                     </p>
                     <p>
-                      Contact our product specialists at <span className="font-medium">+92 324 4054632</span> or email us at <span className="font-medium">info@whitegoldaluminium.com</span>
+                      Contact our product specialists at <span className="font-medium">+92 324 4054632</span> or email us at <span className="font-medium">info@whitegoldaluminum.com</span>
                     </p>
                   </div>
                 </div>

@@ -73,7 +73,7 @@ export default function AboutUs() {
                   White Gold Aluminum was founded in 2008 by Mr. Rizwan Habib, continuing a family legacy in manufacturing that spans over 90 years. Our journey began in 1935 when Haji Muhammad Abdullah, the grandfather of our current CEO, started manufacturing wood products.
                 </p>
                 <p className="text-gray-600 leading-relaxed">
-                  The tradition continued with Habib Ullah, the third child of Haji Abdullah, who expanded into lathe machines, rubber, aluminum, and steel products by founding Jojo Traders in 1973. Today, under the leadership of Rizwan Habib, White Gold Aluminum has been producing premium aluminum products for 23 years.
+                  The tradition continued with Habib Ullah, the third child of Haji Abdullah, who expanded into lathe machines, rubber, aluminum, and steel products by founding Jojo Traders in 1973. Today, under the leadership of Rizwan Habib, White Gold Aluminum has been producing premium aluminum products for 17 years.
                 </p>
               </motion.div>
               

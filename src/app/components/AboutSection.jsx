@@ -45,33 +45,7 @@ const AboutSection = () => {
           </div>
         </motion.div>
         
-        {/* LLA Subsidiary Banner */}
-        <motion.div 
-          className="mb-12 p-4 bg-gradient-to-r from-sky-500 to-blue-600 rounded-lg shadow-lg text-white"
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6 }}
-          viewport={{ once: true }}
-        >
-          <div className="flex flex-col md:flex-row items-center justify-center">
-            <div className="bg-white rounded-lg shadow-sm p-2 flex items-center justify-center">
-              <Image 
-                src="/LLAlogo.png" 
-                alt="LLA Logo" 
-                width={40} 
-                height={40}
-                className="object-contain"
-              />
-            </div>
-            
-            <div className="flex items-center mb-3 md:mb-0 md:mr-6 pl-4">
-              <h3 className="text-xl font-semibold">Subsidiary of LLA Long Life Aluminum</h3>
-            </div>
-            <p className="text-center md:text-left">
-              Leveraging the global strength and resources of our parent company to deliver exceptional quality.
-            </p>
-          </div>
-        </motion.div>
+     
         
         <div className="grid md:grid-cols-2 gap-12 items-center">
           <motion.div

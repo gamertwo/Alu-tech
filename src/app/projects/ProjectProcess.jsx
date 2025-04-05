@@ -1,6 +1,6 @@
 // app/projects/ProjectProcess.jsx
 "use client";
-
+import Link from "next/link";
 import { motion } from "framer-motion";
 import { MessageSquare, PenTool, Factory, Truck } from "lucide-react";
 
@@ -131,13 +131,15 @@ const ProjectProcess = () => {
                 Our experienced team can design and manufacture custom aluminum solutions to meet your specific requirements.
               </p>
             </div>
-            <motion.button 
-              className="px-6 py-3 bg-sky-600 text-white font-medium rounded-md shadow-md hover:bg-sky-700 transition-colors self-start"
-              whileHover={{ y: -2, boxShadow: "0 10px 15px -3px rgba(0, 0, 0, 0.1)" }}
-              whileTap={{ y: 0 }}
-            >
-              Request Consultation
-            </motion.button>
+            <Link href="/contact">
+      <motion.button 
+        className="px-6 py-3 bg-sky-600 text-white font-medium rounded-md shadow-md hover:bg-sky-700 transition-colors self-start"
+        whileHover={{ y: -2, boxShadow: "0 10px 15px -3px rgba(0, 0, 0, 0.1)" }}
+        whileTap={{ y: 0 }}
+      >
+        Request Consultation
+      </motion.button>
+    </Link>
           </div>
         </motion.div>
       </div>
