@@ -385,7 +385,7 @@ export default function BecomeDealer() {
                   <Mail className="h-6 w-6" />
                 </div>
                 <h3 className="text-lg font-semibold mb-2">Email Us</h3>
-                <p>dealers@whitegoldaluminum.com</p>
+                <p>info@whitegoldaluminum.com</p>
               </div>
               <div className="flex flex-col items-center">
                 <div className="bg-white/20 p-3 rounded-full mb-4">

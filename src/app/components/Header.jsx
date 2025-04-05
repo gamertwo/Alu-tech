@@ -3,10 +3,9 @@
 
 import { useState, useRef, useEffect } from "react";
 import { motion } from "framer-motion";
-import Link from "next/link";
 import Image from "next/image";
 import { Menu, X, ChevronDown } from "lucide-react";
-
+import Link from "next/link";
 const Header = () => {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [dropdownOpen, setDropdownOpen] = useState(false);
@@ -14,10 +13,22 @@ const Header = () => {
 
   const toggleMobileMenu = () => {
     setMobileMenuOpen(!mobileMenuOpen);
+    // Close dropdown if mobile menu is being closed
+    if (mobileMenuOpen) {
+      setDropdownOpen(false);
+    }
   };
 
   const toggleDropdown = () => {
     setDropdownOpen(!dropdownOpen);
+  };
+  
+  // Function to handle navigation
+  const handleNavigation = (path) => {
+    setMobileMenuOpen(false);
+    setDropdownOpen(false);
+    // We're using <a> tags now, so navigation happens automatically
+    // No need to programmatically navigate
   };
 
   // Close dropdown when clicking outside
@@ -39,6 +50,7 @@ const Header = () => {
     { name: "Projects", path: "/projects" },
     { name: "Catalog", path: "/catalog" },
     { name: "About Us", path: "/about" },
+    { name: "Partnership", path: "#", isDropdown: true },
     { name: "Contact Us", path: "/contact" }
   ];
 
@@ -57,8 +69,8 @@ const Header = () => {
             animate={{ opacity: 1 }}
             transition={{ duration: 0.5 }}
           >
-            <Link href="/" className="flex items-center">
-              <div className="relative h-12 w-40">
+            <a href="/" className="flex items-center">
+              <div className="relative h-8 w-32 sm:h-12 sm:w-40">
                 {/* Replace with your actual logo path */}
                 <Image 
                   src="/logo.png" 
@@ -68,7 +80,7 @@ const Header = () => {
                   priority
                 />
               </div>
-            </Link>
+            </a>
           </motion.div>
           
           {/* Desktop Navigation */}
@@ -79,52 +91,49 @@ const Header = () => {
                 initial={{ opacity: 0, y: -20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.5, delay: index * 0.1 }}
+                className={item.isDropdown ? "relative" : ""}
+                ref={item.isDropdown ? dropdownRef : null}
               >
-                <Link 
-                  href={item.path}
-                  className="text-gray-600 hover:text-sky-600 font-medium transition-colors"
-                >
-                  {item.name}
-                </Link>
-              </motion.div>
-            ))}
-            
-            {/* Partnership Dropdown */}
-            <motion.div
-              ref={dropdownRef}
-              className="relative"
-              initial={{ opacity: 0, y: -20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5, delay: navItems.length * 0.1 }}
-            >
-              <button 
-                onClick={toggleDropdown}
-                className="flex items-center text-gray-600 hover:text-sky-600 font-medium transition-colors focus:outline-none"
-              >
-                Partnership
-                <ChevronDown className={`ml-1 h-4 w-4 transition-transform duration-200 ${dropdownOpen ? 'rotate-180' : ''}`} />
-              </button>
-              
-              {dropdownOpen && (
-                <motion.div 
-                  className="absolute mt-2 w-60 bg-white rounded-md shadow-lg py-1 z-10"
-                  initial={{ opacity: 0, y: -10 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.2 }}
-                >
-                  {dropdownItems.map((item) => (
-                    <Link
-                      key={item.name}
-                      href={item.path}
-                      className="block px-4 py-2 text-gray-700 hover:bg-sky-50 hover:text-sky-600 transition-colors"
-                      onClick={() => setDropdownOpen(false)}
+                {item.isDropdown ? (
+                  <>
+                    <button 
+                      onClick={toggleDropdown}
+                      className="flex items-center text-gray-600 hover:text-sky-600 font-medium transition-colors focus:outline-none"
                     >
                       {item.name}
-                    </Link>
-                  ))}
-                </motion.div>
-              )}
-            </motion.div>
+                      <ChevronDown className={`ml-1 h-4 w-4 transition-transform duration-200 ${dropdownOpen ? 'rotate-180' : ''}`} />
+                    </button>
+                    
+                    {dropdownOpen && (
+                      <motion.div 
+                        className="absolute mt-2 w-60 bg-white rounded-md shadow-lg py-1 z-10"
+                        initial={{ opacity: 0, y: -10 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        transition={{ duration: 0.2 }}
+                      >
+                        {dropdownItems.map((dropItem) => (
+                          <a
+                            key={dropItem.name}
+                            href={dropItem.path}
+                            className="block px-4 py-2 text-gray-700 hover:bg-sky-50 hover:text-sky-600 transition-colors w-full"
+                            onClick={() => handleNavigation(dropItem.path)}
+                          >
+                            {dropItem.name}
+                          </a>
+                        ))}
+                      </motion.div>
+                    )}
+                  </>
+                ) : (
+                  <a 
+                    href={item.path}
+                    className="text-gray-600 hover:text-sky-600 font-medium transition-colors"
+                  >
+                    {item.name}
+                  </a>
+                )}
+              </motion.div>
+            ))}
           </nav>
           
           {/* Mobile Menu Button */}
@@ -151,41 +160,28 @@ const Header = () => {
           >
             <div className="flex flex-col space-y-4">
               {navItems.map((item) => (
-                <Link 
-                  key={item.name}
-                  href={item.path}
-                  className="text-gray-600 hover:text-sky-600 font-medium px-4 py-2 hover:bg-gray-50 rounded-md transition-colors"
-                  onClick={toggleMobileMenu}
-                >
-                  {item.name}
-                </Link>
+                !item.isDropdown ? (
+                  <Link 
+                    key={item.name}
+                    href={item.path}
+                    className="text-gray-600 hover:text-sky-600 font-medium px-4 py-2 hover:bg-gray-50 rounded-md transition-colors"
+                    onClick={toggleMobileMenu}
+                  >
+                    {item.name}
+                  </Link>
+                ) : (
+                  dropdownItems.map((dropItem) => (
+                    <Link
+                      key={dropItem.name}
+                      href={dropItem.path}
+                      className="text-gray-600 hover:text-sky-600 font-medium px-4 py-2 hover:bg-gray-50 rounded-md transition-colors"
+                      onClick={toggleMobileMenu}
+                    >
+                      {dropItem.name}
+                    </Link>
+                  ))
+                )
               ))}
-              
-              {/* Mobile Partnership dropdown */}
-              <div className="px-4 py-2">
-                <button
-                  onClick={() => setDropdownOpen(!dropdownOpen)}
-                  className="flex items-center w-full text-left text-gray-600 hover:text-sky-600 font-medium focus:outline-none"
-                >
-                  Partnership
-                  <ChevronDown className={`ml-2 h-4 w-4 transition-transform duration-200 ${dropdownOpen ? 'rotate-180' : ''}`} />
-                </button>
-                
-                {dropdownOpen && (
-                  <div className="pl-4 mt-2 border-l-2 border-gray-100 space-y-2">
-                    {dropdownItems.map((item) => (
-                      <Link
-                        key={item.name}
-                        href={item.path}
-                        className="block py-2 text-gray-600 hover:text-sky-600 transition-colors"
-                        onClick={toggleMobileMenu}
-                      >
-                        {item.name}
-                      </Link>
-                    ))}
-                  </div>
-                )}
-              </div>
             </div>
           </motion.div>
         )}
