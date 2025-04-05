@@ -6,6 +6,7 @@ import { motion } from "framer-motion";
 import Image from "next/image";
 import { Menu, X, ChevronDown } from "lucide-react";
 import Link from "next/link";
+
 const Header = () => {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [dropdownOpen, setDropdownOpen] = useState(false);
@@ -60,7 +61,7 @@ const Header = () => {
   ];
 
   return (
-    <header className="sticky top-0 z-50 bg-white shadow-md">
+    <header className="sticky top-0 z-[100] bg-white shadow-md ">
       <div className="container mx-auto px-4 py-3">
         <div className="flex justify-between items-center">
           <motion.div 
@@ -106,7 +107,7 @@ const Header = () => {
                     
                     {dropdownOpen && (
                       <motion.div 
-                        className="absolute mt-2 w-60 bg-white rounded-md shadow-lg py-1 z-10"
+                        className="absolute mt-2 w-60 bg-white rounded-md shadow-lg py-1 z-[101]"
                         initial={{ opacity: 0, y: -10 }}
                         animate={{ opacity: 1, y: 0 }}
                         transition={{ duration: 0.2 }}
@@ -153,7 +154,7 @@ const Header = () => {
         {/* Mobile Navigation */}
         {mobileMenuOpen && (
           <motion.div 
-            className="md:hidden mt-4 py-4 border-t border-gray-100"
+            className="md:hidden mt-4 py-4 border-t border-gray-100 relative z-[101]"
             initial={{ opacity: 0, height: 0 }}
             animate={{ opacity: 1, height: "auto" }}
             transition={{ duration: 0.3 }}

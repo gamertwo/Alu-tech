@@ -8,6 +8,7 @@ import Link from "next/link";
 import { CheckCircle2, ArrowRight, Send, BarChart2, Shield, Clock, CreditCard, Truck, ThumbsUp } from "lucide-react";
 import Header from "../components/Header";
 import Footer from "../components/Footer";
+
 export default function BecomeSupplier() {
   // Form state
   const [formData, setFormData] = useState({
@@ -121,9 +122,9 @@ export default function BecomeSupplier() {
 
   return (
     <main>
-        <Header/>
-      {/* Hero section */}
-      <section className="relative h-[300px] md:h-[400px] text-white">
+      <Header/>
+      {/* Hero section - Made Responsive */}
+      <section className="relative min-h-[300px] sm:min-h-[350px] md:min-h-[400px] lg:min-h-[450px] text-white">
         <div className="absolute inset-0 opacity-40 bg-pattern">
           <Image 
             src="/CNC-machine.png" 
@@ -136,7 +137,7 @@ export default function BecomeSupplier() {
         
         <div className="absolute inset-0 bg-gradient-to-r from-sky-800 to-sky-600 opacity-70"></div>
         
-        <div className="container mx-auto px-4 h-full flex flex-col justify-center relative z-10">
+        <div className="container mx-auto px-4 py-16 md:py-20 lg:py-24 h-full flex flex-col justify-center relative z-10">
           <motion.div 
             className="max-w-2xl"
             initial={{ opacity: 0, y: 20 }}
@@ -147,25 +148,38 @@ export default function BecomeSupplier() {
               initial={{ opacity: 0, x: -20 }}
               animate={{ opacity: 1, x: 0 }}
               transition={{ delay: 0.3, duration: 0.6 }}
-              className="mb-6 inline-block"
+              className="mb-4 sm:mb-6 inline-block"
             >
-              <span className="bg-sky-400 text-white text-base uppercase tracking-wider py-2 px-5 rounded-full font-bold shadow-lg">
+              <span className="bg-sky-400 text-white text-xs sm:text-sm md:text-base uppercase tracking-wider py-1 px-3 sm:py-2 sm:px-5 rounded-full font-bold shadow-lg">
                 Supply Chain Partnership
               </span>
             </motion.div>
 
-            <h1 className="text-4xl md:text-5xl font-bold mb-4 leading-tight">
+            <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold mb-2 sm:mb-4 leading-tight">
               Become a White Gold Aluminium Supplier
             </h1>
             
             <motion.p 
-              className="text-xl mb-6 text-sky-50 max-w-xl"
+              className="text-base sm:text-lg md:text-xl mb-4 sm:mb-6 text-sky-50 max-w-xl"
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               transition={{ duration: 0.8, delay: 0.2 }}
             >
               Join our network of trusted suppliers and be part of our commitment to excellence in aluminum manufacturing.
             </motion.p>
+            
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.5, duration: 0.6 }}
+            >
+              <Link 
+                href="#supplier-application"
+                className="inline-flex items-center bg-white text-sky-600 hover:bg-sky-50 font-medium py-2 px-4 sm:py-3 sm:px-6 rounded-md transition-colors duration-300 shadow-md"
+              >
+                Apply Now <ArrowRight className="ml-2 h-4 w-4 sm:h-5 sm:w-5" />
+              </Link>
+            </motion.div>
           </motion.div>
         </div>
       </section>
@@ -260,7 +274,7 @@ export default function BecomeSupplier() {
       </section>
       
       {/* Application form */}
-      <section className="py-16 bg-white">
+      <section id="supplier-application" className="py-16 bg-white">
         <div className="container mx-auto px-4">
           <motion.div 
             className="text-center mb-12"
@@ -453,73 +467,6 @@ export default function BecomeSupplier() {
         </div>
       </section>
       
-      {/* Supplier FAQ */}
-      {/* <section className="py-16 bg-sky-50">
-        <div className="container mx-auto px-4">
-          <motion.div 
-            className="text-center mb-12"
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6 }}
-            viewport={{ once: true }}
-          >
-            <span className="inline-block px-4 py-1 rounded-full bg-white text-sky-600 text-sm font-medium mb-4">
-              Common Questions
-            </span>
-            <h2 className="text-3xl md:text-4xl font-bold text-gray-800 mb-4">Supplier FAQs</h2>
-            <div className="w-24 h-1 bg-sky-500 mx-auto mb-6"></div>
-          </motion.div>
-          
-          <div className="max-w-4xl mx-auto">
-            <div className="space-y-6">
-              <motion.div 
-                className="bg-white p-6 rounded-lg border border-sky-100 shadow-sm"
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.4 }}
-                viewport={{ once: true }}
-              >
-                <h3 className="text-lg font-semibold mb-2 text-gray-800">What are your payment terms for suppliers?</h3>
-                <p className="text-gray-600">Standard payment terms are net 30 days from the date of invoice receipt, though specific terms may vary based on the agreement and relationship with each supplier.</p>
-              </motion.div>
-              
-              <motion.div 
-                className="bg-white p-6 rounded-lg border border-sky-100 shadow-sm"
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.4, delay: 0.1 }}
-                viewport={{ once: true }}
-              >
-                <h3 className="text-lg font-semibold mb-2 text-gray-800">Do you require any specific certifications from suppliers?</h3>
-                <p className="text-gray-600">Depending on the materials or services provided, we may require certifications such as ISO 9001, ISO 14001, or industry-specific certifications. These requirements will be discussed during the qualification process.</p>
-              </motion.div>
-              
-              <motion.div 
-                className="bg-white p-6 rounded-lg border border-sky-100 shadow-sm"
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.4, delay: 0.2 }}
-                viewport={{ once: true }}
-              >
-                <h3 className="text-lg font-semibold mb-2 text-gray-800">How long does the supplier approval process take?</h3>
-                <p className="text-gray-600">The approval process typically takes 4-6 weeks, depending on the complexity of products/services offered and the thoroughness of information provided in your application.</p>
-              </motion.div>
-              
-              <motion.div 
-                className="bg-white p-6 rounded-lg border border-sky-100 shadow-sm"
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.4, delay: 0.3 }}
-                viewport={{ once: true }}
-              >
-                <h3 className="text-lg font-semibold mb-2 text-gray-800">Will there be a site visit as part of the qualification process?</h3>
-                <p className="text-gray-600">For certain critical suppliers, we may conduct on-site assessments to verify capabilities, quality management systems, and production facilities as part of our due diligence process.</p>
-              </motion.div>
-            </div>
-          </div>
-        </div>
-      </section> */}
-      
       {/* CTA section */}
       <section className="py-12 bg-sky-600 text-white">
         <div className="container mx-auto px-4 text-center">
@@ -532,7 +479,7 @@ export default function BecomeSupplier() {
             whileTap={{ scale: 0.95 }}
           >
             <Link 
-              href="/contact"
+              href="#supplier-application"
               className="inline-flex items-center bg-white text-sky-600 hover:bg-sky-50 px-8 py-3 rounded-md font-medium transition-colors duration-300"
             >
               Apply Now <ArrowRight className="ml-2 h-5 w-5" />

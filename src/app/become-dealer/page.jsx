@@ -8,6 +8,7 @@ import Link from "next/link";
 import { CheckCircle2, ArrowRight, Send, MapPin, Phone, Mail } from "lucide-react";
 import Header from "../components/Header";
 import Footer from "../components/Footer";
+
 export default function BecomeDealer() {
   // Form state
   const [formData, setFormData] = useState({
@@ -85,9 +86,9 @@ export default function BecomeDealer() {
 
   return (
     <main>
-        <Header/>
-      {/* Hero section */}
-      <section className="relative h-[300px] md:h-[400px] text-white">
+      <Header/>
+      {/* Hero section - Improved Responsiveness */}
+      <section className="relative min-h-[300px] sm:min-h-[350px] md:min-h-[400px] lg:min-h-[450px] text-white">
         <div className="absolute inset-0 opacity-40 bg-pattern">
           <Image 
             src="/aluminium-factory.png" 
@@ -100,7 +101,7 @@ export default function BecomeDealer() {
         
         <div className="absolute inset-0 bg-gradient-to-r from-blue-800 to-blue-600 opacity-70"></div>
         
-        <div className="container mx-auto px-4 h-full flex flex-col justify-center relative z-10">
+        <div className="container mx-auto px-4 py-16 md:py-20 lg:py-24 h-full flex flex-col justify-center relative z-10">
           <motion.div 
             className="max-w-2xl"
             initial={{ opacity: 0, y: 20 }}
@@ -111,25 +112,38 @@ export default function BecomeDealer() {
               initial={{ opacity: 0, x: -20 }}
               animate={{ opacity: 1, x: 0 }}
               transition={{ delay: 0.3, duration: 0.6 }}
-              className="mb-6 inline-block"
+              className="mb-4 sm:mb-6 inline-block"
             >
-              <span className="bg-blue-400 text-white text-base uppercase tracking-wider py-2 px-5 rounded-full font-bold shadow-lg">
+              <span className="bg-blue-400 text-white text-xs sm:text-sm md:text-base uppercase tracking-wider py-1 px-3 sm:py-2 sm:px-5 rounded-full font-bold shadow-lg">
                 Partnership Opportunity
               </span>
             </motion.div>
 
-            <h1 className="text-4xl md:text-5xl font-bold mb-4 leading-tight">
+            <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold mb-2 sm:mb-4 leading-tight">
               Become a White Gold Aluminium Dealer
             </h1>
             
             <motion.p 
-              className="text-xl mb-6 text-blue-50 max-w-xl"
+              className="text-base sm:text-lg md:text-xl mb-4 sm:mb-6 text-blue-50 max-w-xl"
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               transition={{ duration: 0.8, delay: 0.2 }}
             >
               Join our network of authorized dealers and grow your business with our premium aluminum solutions.
             </motion.p>
+            
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.5, duration: 0.6 }}
+            >
+              <Link 
+                href="#application-form"
+                className="inline-flex items-center bg-white text-blue-600 hover:bg-blue-50 font-medium py-2 px-4 sm:py-3 sm:px-6 rounded-md transition-colors duration-300 shadow-md"
+              >
+                Apply Now <ArrowRight className="ml-2 h-4 w-4 sm:h-5 sm:w-5" />
+              </Link>
+            </motion.div>
           </motion.div>
         </div>
       </section>
@@ -180,7 +194,7 @@ export default function BecomeDealer() {
       </section>
       
       {/* Application form */}
-      <section className="py-16 bg-gray-50">
+      <section id="application-form" className="py-16 bg-gray-50">
         <div className="container mx-auto px-4">
           <motion.div 
             className="text-center mb-12"
