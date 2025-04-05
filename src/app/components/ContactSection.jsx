@@ -199,7 +199,7 @@ const ContactSection = ({ formData: externalFormData, handleInputChange: externa
                     </div>
                     <div>
                       <h4 className="font-semibold text-gray-800 text-sm md:text-base">Phone</h4>
-                      <p className="text-gray-600 text-xs md:text-sm">+92 324 40546327</p>
+                      <p className="text-gray-600 text-xs md:text-sm">+92 324 4054632</p>
                     </div>
                   </div>
                   <div className="flex items-start">
