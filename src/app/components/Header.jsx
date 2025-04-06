@@ -61,7 +61,7 @@ const Header = () => {
   ];
 
   return (
-    <header className="sticky top-0 z-[100] bg-white shadow-md ">
+    <header className="sticky top-0 z-[100] bg-white shadow-md">
       <div className="container mx-auto px-4 py-3">
         <div className="flex justify-between items-center">
           <motion.div 
@@ -71,13 +71,13 @@ const Header = () => {
             transition={{ duration: 0.5 }}
           >
             <a href="/" className="flex items-center">
-              <div className="relative h-8 w-32 sm:h-12 sm:w-40">
+              <div className="relative h-10 w-40 sm:h-12 sm:w-40 ml-0">
                 {/* Replace with your actual logo path */}
                 <Image 
                   src="/logo.png" 
                   alt="White Gold Aluminium Logo" 
                   fill
-                  style={{ objectFit: "contain" }}
+                  style={{ objectFit: "contain", objectPosition: "left" }}
                   priority
                 />
               </div>
