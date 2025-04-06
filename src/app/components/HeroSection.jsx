@@ -88,7 +88,7 @@ const HeroSection = () => {
           >
             Innovating Aluminum for a Stronger Tomorrow
             <motion.span 
-              className="block text-blue-200 mt-2 text-xl sm:text-2xl md:text-3xl pl-1 sm:pl-2"
+              className="block text-blue-200 mt-2 text-xl sm:text-2xl md:text-3xl"
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               transition={{ duration: 0.8, delay: 0.9 }}
