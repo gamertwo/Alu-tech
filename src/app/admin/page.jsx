@@ -5,7 +5,7 @@ import { motion } from 'framer-motion';
 import { 
   Calendar, Clock, User, Mail, Phone, Building, 
   MessageSquare, CheckCircle2, XCircle, AlertCircle, Search, 
-  RefreshCw, ChevronDown, ChevronUp, Filter 
+  RefreshCw, ChevronDown, ChevronUp, Filter, Lock
 } from 'lucide-react';
 
 // Import components
@@ -27,6 +27,14 @@ export default function AdminPage() {
   const [expandedMeeting, setExpandedMeeting] = useState(null);
   const [activeTab, setActiveTab] = useState('dashboard');
   
+  // Authentication states
+  const [isAuthenticated, setIsAuthenticated] = useState(false);
+  const [authError, setAuthError] = useState('');
+  
+  // Use refs instead of state for form inputs to avoid typing issues
+  const emailRef = React.useRef();
+  const passwordRef = React.useRef();
+
   // Stats
   const [stats, setStats] = useState({
     total: 0,
@@ -38,8 +46,68 @@ export default function AdminPage() {
   });
 
   useEffect(() => {
-    fetchMeetings();
+    // Check for existing auth session on page load
+    const checkAuth = async () => {
+      try {
+        const response = await fetch('/api/check-auth');
+        if (response.ok) {
+          setIsAuthenticated(true);
+          fetchMeetings();
+        } else {
+          setIsAuthenticated(false);
+          setIsLoading(false);
+        }
+      } catch (error) {
+        console.error('Auth check error:', error);
+        setIsAuthenticated(false);
+        setIsLoading(false);
+      }
+    };
+
+    checkAuth();
   }, []);
+
+  const handleLogin = async (e) => {
+    e.preventDefault();
+    setAuthError('');
+    setIsLoading(true);
+
+    // Get values from refs
+    const email = emailRef.current.value;
+    const password = passwordRef.current.value;
+
+    try {
+      const response = await fetch('/api/login', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ email, password }),
+      });
+
+      if (response.ok) {
+        setIsAuthenticated(true);
+        fetchMeetings();
+      } else {
+        const data = await response.json();
+        setAuthError(data.message || 'Invalid credentials');
+        setIsLoading(false);
+      }
+    } catch (error) {
+      console.error('Login error:', error);
+      setAuthError('An error occurred during login');
+      setIsLoading(false);
+    }
+  };
+
+  const handleLogout = async () => {
+    try {
+      await fetch('/api/logout', { method: 'POST' });
+      setIsAuthenticated(false);
+    } catch (error) {
+      console.error('Logout error:', error);
+    }
+  };
 
   const fetchMeetings = async () => {
     setIsLoading(true);
@@ -342,7 +410,7 @@ export default function AdminPage() {
       case 'settings':
         return (
           <div className="bg-white rounded-lg shadow-sm border border-gray-100 p-8 text-center">
-            <Settings className="h-12 w-12 text-gray-400 mx-auto mb-4" />
+            <div className="h-12 w-12 text-gray-400 mx-auto mb-4">⚙️</div>
             <h3 className="text-lg font-medium text-gray-800 mb-2">Settings</h3>
             <p className="text-gray-600">
               Admin settings will be available in a future update.
@@ -355,31 +423,132 @@ export default function AdminPage() {
     }
   };
 
-  return (
+  // Login Form Component
+  const LoginForm = () => (
+    <div className="min-h-screen flex items-center justify-center bg-gray-50 py-12 px-4 sm:px-6 lg:px-8">
+      <div className="max-w-md w-full space-y-8">
+        <div>
+          <h2 className="mt-6 text-center text-3xl font-extrabold text-gray-900">
+            Admin Login
+          </h2>
+          <p className="mt-2 text-center text-sm text-gray-600">
+            Please sign in to access the admin dashboard
+          </p>
+        </div>
+        
+        {authError && (
+          <div className="bg-red-50 border-l-4 border-red-400 p-4">
+            <div className="flex">
+              <div className="flex-shrink-0">
+                <XCircle className="h-5 w-5 text-red-400" />
+              </div>
+              <div className="ml-3">
+                <p className="text-sm text-red-700">{authError}</p>
+              </div>
+            </div>
+          </div>
+        )}
+        
+        <form className="mt-8 space-y-6" onSubmit={handleLogin}>
+          <div className="rounded-md shadow-sm -space-y-px">
+            <div>
+              <label htmlFor="email-address" className="sr-only">Email address</label>
+              <div className="flex items-center">
+                <span className="inline-flex items-center px-3 rounded-l-md border border-r-0 border-gray-300 bg-gray-50 text-gray-500">
+                  <Mail className="h-5 w-5" />
+                </span>
+                <input
+                  id="email-address"
+                  name="email"
+                  type="email"
+                  autoComplete="email"
+                  required
+                  className="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-r-md focus:outline-none focus:ring-blue-500 focus:border-blue-500 focus:z-10 sm:text-sm"
+                  placeholder="Email address"
+                  ref={emailRef}
+                />
+              </div>
+            </div>
+            <div className="mt-4">
+              <label htmlFor="password" className="sr-only">Password</label>
+              <div className="flex items-center">
+                <span className="inline-flex items-center px-3 rounded-l-md border border-r-0 border-gray-300 bg-gray-50 text-gray-500">
+                  <Lock className="h-5 w-5" />
+                </span>
+                <input
+                  id="password"
+                  name="password"
+                  type="password"
+                  autoComplete="current-password"
+                  required
+                  className="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-r-md focus:outline-none focus:ring-blue-500 focus:border-blue-500 focus:z-10 sm:text-sm"
+                  placeholder="Password"
+                  ref={passwordRef}
+                />
+              </div>
+            </div>
+          </div>
+
+          <div>
+            <button
+              type="submit"
+              className="group relative w-full flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500"
+              disabled={isLoading}
+            >
+              {isLoading ? (
+                <span className="flex items-center">
+                  <RefreshCw className="animate-spin -ml-1 mr-2 h-4 w-4" />
+                  Signing in...
+                </span>
+              ) : (
+                'Sign in'
+              )}
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+  );
+
+  // Main Admin Layout
+  const AdminLayout = () => (
     <div className="min-h-screen bg-gray-50">
-      <AdminHeader />
+      <AdminHeader onLogout={handleLogout} />
       <AdminTabs activeTab={activeTab} setActiveTab={setActiveTab} />
       
       <div className="container mx-auto px-4 py-8">
         <div className="mb-8">
-          <h1 className="text-3xl font-bold text-gray-900 mb-2">
-            {activeTab === 'dashboard' && 'Admin Dashboard'}
-            {activeTab === 'meetings' && 'Meeting Requests'}
-            {activeTab === 'messages' && 'Contact Messages'}
-            {activeTab === 'customers' && 'Customer Management'}
-            {activeTab === 'settings' && 'Settings'}
-          </h1>
-          <p className="text-gray-600">
-            {activeTab === 'dashboard' && 'Overview of your White Gold Aluminium business'}
-            {activeTab === 'meetings' && 'Manage and track product consultation requests'}
-            {activeTab === 'messages' && 'Manage messages from the contact form'}
-            {activeTab === 'customers' && 'Manage your customer database'}
-            {activeTab === 'settings' && 'Customize your admin preferences'}
-          </p>
+          <div className="flex justify-between items-center">
+            <div>
+              <h1 className="text-3xl font-bold text-gray-900 mb-2">
+                {activeTab === 'dashboard' && 'Admin Dashboard'}
+                {activeTab === 'meetings' && 'Meeting Requests'}
+                {activeTab === 'messages' && 'Contact Messages'}
+                {activeTab === 'customers' && 'Customer Management'}
+                {activeTab === 'settings' && 'Settings'}
+              </h1>
+              <p className="text-gray-600">
+                {activeTab === 'dashboard' && 'Overview of your White Gold Aluminium business'}
+                {activeTab === 'meetings' && 'Manage and track product consultation requests'}
+                {activeTab === 'messages' && 'Manage messages from the contact form'}
+                {activeTab === 'customers' && 'Manage your customer database'}
+                {activeTab === 'settings' && 'Customize your admin preferences'}
+              </p>
+            </div>
+            <button
+              onClick={handleLogout}
+              className="px-4 py-2 text-sm font-medium text-white bg-red-600 rounded-md hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-500"
+            >
+              Logout
+            </button>
+          </div>
         </div>
         
         {renderTabContent()}
       </div>
     </div>
   );
+
+  // Return login form or admin dashboard based on authentication status
+  return isAuthenticated ? <AdminLayout /> : <LoginForm />;
 }
