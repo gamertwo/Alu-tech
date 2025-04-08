@@ -1,9 +1,8 @@
-// next.config.js
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-  trailingSlash: true, // Ensures all routes end with a slash
+  trailingSlash: true, 
   images: {
-    unoptimized: false, // Required for static export
+    unoptimized: false,
     remotePatterns: [
       {
         protocol: 'https',
@@ -11,42 +10,49 @@ const nextConfig = {
       },
     ],
   },
-  // Enable more optimizations that work with static export
-  swcMinify: true, // Use SWC minification for better performance
+  swcMinify: true,
   reactStrictMode: true,
-  compress: true, // Enable compression
-  poweredByHeader: false, // Remove X-Powered-By header
-  // Add webpack optimizations
-  webpack: (config, { dev }) => {
-    // Only run in production builds
-    if (!dev) {
-      // Add optimization for CSS
-      config.optimization = {
-        ...config.optimization,
-        minimize: true, // Ensure minimization is enabled
-        splitChunks: {
-          chunks: 'all',
-          cacheGroups: {
-            commons: {
-              test: /[\\/]node_modules[\\/]/,
-              name: 'vendors',
-              chunks: 'all',
-              priority: 10
-            },
-            // Extract all CSS into separate files
-            styles: {
-              name: 'styles',
-              test: /\.(css|scss)$/,
-              chunks: 'all',
-              enforce: true,
-              priority: 20,
-            },
-          },
-        },
+  compress: true,
+  poweredByHeader: false,
+  
+  // This is the critical part for fixing your issue
+  experimental: {
+    // This helps avoid the "self is not defined" error
+    serverComponentsExternalPackages: [
+      'framer-motion',
+      // Add other problematic packages here if needed
+    ],
+  },
+  
+  webpack: (config, { isServer }) => {
+    // Only apply to the server build
+    if (isServer) {
+      // Externalize packages that should not be bundled
+      config.externals = [
+        ...(config.externals || []),
+        'framer-motion',
+      ];
+      
+      // Modify the module parser to handle browser-specific globals
+      config.module.parser = {
+        ...config.module.parser,
+        javascript: {
+          ...config.module.parser?.javascript,
+          // This tells webpack not to parse these globals in server code
+          node: {
+            self: false,
+            window: false,
+            document: false,
+            navigator: false,
+            location: false,
+          }
+        }
       };
     }
+    
     return config;
   },
 };
 
+// Use ES module export syntax instead of CommonJS
 export default nextConfig;
