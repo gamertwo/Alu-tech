@@ -92,7 +92,7 @@ const Footer = () => {
           {/* Company Info */}
           <motion.div variants={itemVariants}>
             <div className="text-2xl font-bold text-white mb-4">
-              <span className="text-white-500">White Gold</span> Aluminum
+              <span className="text-white-500">WHITE GOLD</span> ALUMINUM (PRIVATE) LIMITED
             </div>
             <p className="mb-4">
               Premium Aluminum solutions for industrial and commercial applications worldwide.

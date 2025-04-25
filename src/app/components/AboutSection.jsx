@@ -34,7 +34,7 @@ const AboutSection = () => {
           <span className="inline-block px-4 py-1 rounded-full bg-sky-100 text-sky-600 text-sm font-medium mb-4">
             Our Legacy
           </span>
-          <h2 className="text-3xl md:text-4xl font-bold text-gray-800 mb-4">About White Gold Aluminum</h2>
+          <h2 className="text-3xl md:text-4xl font-bold text-gray-800 mb-4">About WHITE GOLD ALUMINUM (PRIVATE) LIMITED</h2>
           <div className="w-24 h-1 bg-sky-500 mx-auto mb-6"></div>
           
           {/* LLA Logo with Text */}

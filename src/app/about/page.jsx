@@ -42,7 +42,7 @@ export default function AboutUs() {
               variants={fadeIn}
               className="max-w-3xl"
             >
-              <h1 className="text-4xl md:text-5xl font-bold mb-4">About White Gold Aluminum</h1>
+              <h1 className="text-4xl md:text-5xl font-bold mb-4">ABOUT WHITE GOLD ALUMINUM (PRIVATE) LIMITED</h1>
               <p className="text-xl text-sky-100">
                 A legacy of excellence in aluminum manufacturing since 2008
               </p>
